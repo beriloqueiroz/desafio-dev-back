@@ -2,6 +2,8 @@ package main
 
 import (
 	"context"
+	"fmt"
+	"github.com/beriloqueiroz/desafio-dev-back/internal/core/infra/web"
 	"log"
 	"os"
 	"os/signal"
@@ -17,6 +19,15 @@ func main() {
 	// load environment configs
 
 	// servers and jobs
+	port := ":8080"
+	webserver := web.NewWebServer(port)
+	userRoutes := web.NewUserRoutes()
+	webserver.AddRoute("GET /", userRoutes.CreateUserHandler)
+	srvErr := make(chan error, 1)
+	go func() {
+		fmt.Println("Starting web server on port", port)
+		srvErr <- webserver.Start()
+	}()
 
 	// Wait for interruption.
 	select {
