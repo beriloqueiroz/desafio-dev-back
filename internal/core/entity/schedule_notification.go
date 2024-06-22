@@ -11,6 +11,7 @@ type ScheduleNotification struct {
 	ID        string
 	StartTime time.Time
 	Executed  bool
+	Status    string
 }
 
 func NewScheduleNotification(id string, startTime time.Time, executed bool) (*ScheduleNotification, error) {
@@ -28,6 +29,10 @@ func NewScheduleNotification(id string, startTime time.Time, executed bool) (*Sc
 
 func (s *ScheduleNotification) Execute() {
 	s.Executed = true
+}
+
+func (s *ScheduleNotification) MarkStatus(msg string) {
+	s.Status = msg
 }
 
 func (s *ScheduleNotification) Validate() error {

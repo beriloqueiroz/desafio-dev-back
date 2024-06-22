@@ -12,16 +12,18 @@ type User struct {
 	Active     bool
 	Email      string
 	Phone      string
+	Location   string
 	CreateTime time.Time
 }
 
-func NewUser(id string, active bool, email string, phone string) (*User, error) {
+func NewUser(id string, active bool, email string, phone string, location string) (*User, error) {
 	user := &User{
 		ID:         id,
 		Phone:      phone,
 		Email:      email,
 		CreateTime: time.Now(),
 		Active:     active,
+		Location:   location,
 	}
 	if user.Validate() != nil {
 		return nil, user.Validate()

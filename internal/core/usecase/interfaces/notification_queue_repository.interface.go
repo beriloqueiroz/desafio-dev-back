@@ -1,7 +1,10 @@
 package interfaces
 
-import "context"
+import (
+	"context"
+	"github.com/beriloqueiroz/desafio-dev-back/internal/core/entity"
+)
 
 type NotificationQueueRepository interface {
-	send(ctx context.Context, msg string) error
+	Send(ctx context.Context, notification *entity.Notification) error
 }

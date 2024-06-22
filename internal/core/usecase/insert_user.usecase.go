@@ -11,8 +11,8 @@ type InsertUserUseCase struct {
 	UserRepository interfaces.UserRepository
 }
 
-func (u *InsertUserUseCase) Execute(ctx context.Context, email string, phone string) error {
-	user, err := entity.NewUser(uuid.NewString(), true, email, phone)
+func (u *InsertUserUseCase) Execute(ctx context.Context, email string, phone string, location string) error {
+	user, err := entity.NewUser(uuid.NewString(), true, email, phone, location)
 	if err != nil {
 		return err
 	}

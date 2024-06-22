@@ -2,6 +2,11 @@ package interfaces
 
 import "context"
 
+type MessageLocationOutputDTO struct {
+	Location string
+	Message  string
+}
+
 type MessageRepository interface {
-	findByLocation(ctx context.Context, location string) (string, error)
+	ListByLocations(ctx context.Context, locations []string) (map[string]string, error)
 }
