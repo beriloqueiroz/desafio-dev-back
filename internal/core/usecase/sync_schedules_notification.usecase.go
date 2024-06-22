@@ -43,7 +43,7 @@ func (u *SyncSchedulesNotificationUseCase) Execute(ctx context.Context) error {
 		var msgErr string
 		for _, user := range users {
 			// todo montar notificações enviar notificações para fila
-			notification, err := entity.NewNotification(uuid.NewString(), user, scheduler, locationsMapMsg[user.Location])
+			notification, err := entity.NewNotification(uuid.NewString(), user, *scheduler, locationsMapMsg[user.Location])
 			if err != nil {
 				fmt.Println(err)
 				msgErr += fmt.Sprintf("Falha ao enviar notificação,  page: %d, id: %s, user: %s, error: %s;", page, notification.ID, user.ID, err.Error())

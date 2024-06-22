@@ -9,5 +9,5 @@ type KafkaRepository struct{}
 
 func (k *KafkaRepository) Send(ctx context.Context, notification *entity.Notification) error {
 	//TODO implement me
-	panic("implement me")
+	return nil
 }
