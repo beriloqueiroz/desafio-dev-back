@@ -1,18 +1,18 @@
 package interfaces
 
-import "context"
+import (
+	"context"
+	"github.com/beriloqueiroz/desafio-dev-back/internal/core/entity"
+)
 
 type ListActivesOutputDTO struct {
 	Page    int
 	Size    int
-	Content []struct {
-		ID    string
-		Email string
-		Phone string
-	}
+	Content []entity.User
 }
 
 type UserRepository interface {
-	save(ctx context.Context, id string, email string, phone string, active bool) error
-	listActives(ctx context.Context, page, size int) (*ListActivesOutputDTO, error)
+	Find(ctx context.Context, id string) (*entity.User, error)
+	Save(ctx context.Context, user *entity.User) error
+	ListActives(ctx context.Context, page, size int) (*ListActivesOutputDTO, error)
 }

@@ -10,5 +10,14 @@ type ActivateUserUseCase struct {
 }
 
 func (u *ActivateUserUseCase) Execute(ctx context.Context, ID string) error {
+	user, err := u.UserRepository.Find(ctx, ID)
+	if err != nil {
+		return err
+	}
+	user.Activate()
+	err = u.UserRepository.Save(ctx, user)
+	if err != nil {
+		return err
+	}
 	return nil
 }
