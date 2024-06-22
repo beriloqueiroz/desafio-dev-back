@@ -4,10 +4,6 @@ type DeleteScheduleNotificationUseCase struct {
 	ScheduleRepository interface{}
 }
 
-type DeleteScheduleNotificationUseCaseInput struct {
-	ID string
-}
-
-func (u *DeleteScheduleNotificationUseCase) Execute(input DeleteScheduleNotificationUseCaseInput) error {
+func (u *DeleteScheduleNotificationUseCase) Execute(ID string) error {
 	return nil
 }

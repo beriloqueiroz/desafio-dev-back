@@ -6,11 +6,6 @@ type CreateScheduleNotificationUseCase struct {
 	ScheduleRepository interface{}
 }
 
-type CreateScheduleNotificationUseCaseInput struct {
-	Message   string
-	StartTime time.Time
-}
-
-func (u *CreateScheduleNotificationUseCase) Execute(input CreateScheduleNotificationUseCaseInput) error {
+func (u *CreateScheduleNotificationUseCase) Execute(Message string, StartTime time.Time) error {
 	return nil
 }

@@ -4,10 +4,6 @@ type ActivateUserUseCase struct {
 	UserRepository interface{}
 }
 
-type ActivateUserUseCaseInput struct {
-	ID string
-}
-
-func (u *ActivateUserUseCase) Execute(input ActivateUserUseCaseInput) error {
+func (u *ActivateUserUseCase) Execute(ID string) error {
 	return nil
 }
