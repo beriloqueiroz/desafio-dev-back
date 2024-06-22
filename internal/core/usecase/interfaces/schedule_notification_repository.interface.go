@@ -18,5 +18,5 @@ type ListNotExecutedByIntervalOutputDTO struct {
 type ScheduleNotificationRepository interface {
 	save(ctx context.Context, id string, email string, phone string, active bool) error
 	delete(ctx context.Context, id string) error
-	listNotExecutedByInterval(ctx context.Context, page, size int, start time.Time, end time.Time) ([]ListNotExecutedByIntervalOutputDTO, error)
+	listNotExecutedByInterval(ctx context.Context, page, size int, start time.Time, end time.Time) (*ListNotExecutedByIntervalOutputDTO, error)
 }
