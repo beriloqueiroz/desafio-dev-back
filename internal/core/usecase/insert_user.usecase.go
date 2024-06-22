@@ -1,9 +1,12 @@
 package usecase
 
-import "context"
+import (
+	"context"
+	"github.com/beriloqueiroz/desafio-dev-back/internal/core/usecase/interfaces"
+)
 
 type InsertUserUseCase struct {
-	UserRepository interface{}
+	UserRepository interfaces.UserRepository
 }
 
 func (u *InsertUserUseCase) Execute(ctx context.Context, Email string, Phone string) error {
