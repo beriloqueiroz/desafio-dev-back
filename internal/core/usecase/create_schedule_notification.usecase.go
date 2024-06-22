@@ -1,11 +1,14 @@
 package usecase
 
-import "time"
+import (
+	"context"
+	"time"
+)
 
 type CreateScheduleNotificationUseCase struct {
 	ScheduleRepository interface{}
 }
 
-func (u *CreateScheduleNotificationUseCase) Execute(Message string, StartTime time.Time) error {
+func (u *CreateScheduleNotificationUseCase) Execute(ctx context.Context, Message string, StartTime time.Time) error {
 	return nil
 }

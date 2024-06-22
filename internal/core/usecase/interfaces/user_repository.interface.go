@@ -1,0 +1,8 @@
+package interfaces
+
+import "context"
+
+type UserRepository interface {
+	save(ctx context.Context, id string, email string, phone string, active bool) error
+	listActives(ctx context.Context, page, size int)
+}

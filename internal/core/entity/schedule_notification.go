@@ -9,21 +9,25 @@ import (
 
 type ScheduleNotification struct {
 	ID        string
-	Message   string
 	StartTime time.Time
+	Executed  bool
 }
 
-func NewScheduleNotification(id string, message string, startTime time.Time) (*ScheduleNotification, error) {
+func NewScheduleNotification(id string, startTime time.Time, executed bool) (*ScheduleNotification, error) {
 	schedule := &ScheduleNotification{
 		ID:        id,
-		Message:   message,
 		StartTime: startTime,
+		Executed:  executed,
 	}
 	err := schedule.Validate()
 	if err != nil {
 		return nil, err
 	}
 	return schedule, nil
+}
+
+func (s *ScheduleNotification) Execute() {
+	s.Executed = true
 }
 
 func (s *ScheduleNotification) Validate() error {

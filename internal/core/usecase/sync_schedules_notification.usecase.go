@@ -1,6 +1,9 @@
 package usecase
 
-import "time"
+import (
+	"context"
+	"time"
+)
 
 type SyncSchedulesNotificationUseCase struct {
 	UserRepository     interface{}
@@ -8,6 +11,6 @@ type SyncSchedulesNotificationUseCase struct {
 	NotificationQueue  interface{}
 }
 
-func (u *SyncSchedulesNotificationUseCase) Execute(Message string, StartTime time.Time) error {
+func (u *SyncSchedulesNotificationUseCase) Execute(ctx context.Context, Message string, StartTime time.Time) error {
 	return nil
 }
