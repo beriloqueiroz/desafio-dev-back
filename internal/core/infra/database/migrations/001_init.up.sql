@@ -1,6 +1,8 @@
-CREATE TABLE orders (
+CREATE TABLE users (
                         id varchar(36) NOT NULL PRIMARY KEY,
-                        price decimal(10, 2) NOT NULL,
-                        tax decimal(10, 2) NOT NULL,
-                        final_price decimal(10, 2) NOT NULL
+                        email varchar(320) NOT NULL,
+                        phone varchar(100) NOT NULL,
+                        location varchar(200),
+                        active boolean,
+                        created timestamp
 );

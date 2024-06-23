@@ -23,7 +23,7 @@ func (u *SyncSchedulesNotificationUseCase) Execute(ctx context.Context) error {
 		return err
 	}
 	// todo buscar users ativos com paginação
-	page := 0
+	page := 1
 	size := 500
 	for {
 		users, err := u.UserRepository.ListActives(ctx, page, size)

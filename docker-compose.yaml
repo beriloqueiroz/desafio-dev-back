@@ -1,5 +1,5 @@
 
-version: '3.8'
+version: '3.9'
 services:
   app:
     build: 
@@ -56,14 +56,10 @@ services:
       context: ./internal/core/infra/database/migrations/
       dockerfile: "Dockerfile"
     container_name: migrate
-    networks:
-      - network
     volumes:
-      - ./internal/infra/database/migrations:/migrations
-    entrypoint: dockerize -wait tcp://mysql:3306 -timeout 20s migrate
-    command: [ "-path", "/migrations", "-database",  "postgres://postgres:postgres@mgmt_db:5432/mgmt?query", "-verbose","up" ]
-    links:
-      - mgmt_db
+      - ./internal/core/infra/database/migrations:/migrations
+    entrypoint: dockerize -wait tcp://mgmt_db:5432 -timeout 20s migrate
+    command: [ "-path", "/migrations", "-database",  "postgres://postgres:postgres@mgmt_db:5432/mgmt?sslmode=disable", "-verbose","up" ]
     depends_on:
       - mgmt_db
 

@@ -2,11 +2,14 @@ package main
 
 import (
 	"context"
+	"database/sql"
 	"fmt"
+	"github.com/beriloqueiroz/desafio-dev-back/configs"
 	"github.com/beriloqueiroz/desafio-dev-back/internal/core/infra/implements"
 	"github.com/beriloqueiroz/desafio-dev-back/internal/core/infra/web"
 	"github.com/beriloqueiroz/desafio-dev-back/internal/core/usecase"
 	"github.com/beriloqueiroz/desafio-dev-back/internal/core/usecase/interfaces"
+	_ "github.com/lib/pq"
 	"log"
 	"os"
 	"os/signal"
@@ -21,9 +24,22 @@ func main() {
 	defer cancel()
 
 	// load environment configs
+	configs, err := configs.LoadConfig([]string{"."})
+	if err != nil {
+		panic(err)
+	}
+
+	// dbs
+	db, err := sql.Open(configs.DBDriver, configs.DBUri)
+	if err != nil {
+		panic(err)
+	}
+	defer db.Close()
 
 	// repositories
-	userRepository := implements.PostgresUserRepository{}
+	userRepository := implements.PostgresUserRepository{
+		Db: db,
+	}
 	scheduleRepository := implements.PostgresScheduleRepository{}
 	messageRepository := implements.CacheSyncService{}
 	notificationQueueRepositories := []interfaces.NotificationQueueRepository{
