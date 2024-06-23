@@ -23,8 +23,8 @@ type User struct {
 
 func (p *PostgresUserRepository) Find(ctx context.Context, id string) (*entity.User, error) {
 	var u User
-	err := p.Db.QueryRowContext(ctx, "SELECT * FROM users WHERE id = $1", id).Scan(
-		&u.ID, &u.Email, &u.Active, &u.Location, &u.Created, &u.Phone)
+	err := p.Db.QueryRowContext(ctx, "SELECT id, email, phone, active, location, created FROM users WHERE id = $1", id).Scan(
+		&u.ID, &u.Email, &u.Phone, &u.Active, &u.Location, &u.Created)
 	if err != nil {
 		return nil, err
 	}
@@ -33,8 +33,8 @@ func (p *PostgresUserRepository) Find(ctx context.Context, id string) (*entity.U
 
 func (p *PostgresUserRepository) Save(ctx context.Context, user *entity.User) error {
 	var u User
-	err := p.Db.QueryRowContext(ctx, "SELECT * FROM users WHERE id = $1", user.ID).Scan(
-		&u.ID, &u.Email, &u.Active, &u.Location, &u.Created, &u.Phone)
+	err := p.Db.QueryRowContext(ctx, "SELECT id, email, phone, active, location, created FROM users WHERE id = $1", user.ID).Scan(
+		&u.ID, &u.Email, &u.Phone, &u.Active, &u.Location, &u.Created)
 	if errors.Is(err, sql.ErrNoRows) {
 		// insert
 		_, err = p.Db.ExecContext(ctx, "INSERT INTO users (id, email, phone, active, location, created) VALUES ($1, $2, $3, $4, $5, $6)",
@@ -48,8 +48,8 @@ func (p *PostgresUserRepository) Save(ctx context.Context, user *entity.User) er
 		return err
 	}
 	// update
-	_, err = p.Db.ExecContext(ctx, "UPDATE users SET email = $2, phone = $3, active = $4, location = $5  WHERE id = $1;",
-		user.ID, user.Email, user.Phone, user.Active, user.Location)
+	_, err = p.Db.ExecContext(ctx, "UPDATE users SET email = $1, phone = $2, active = $3, location = $4  WHERE id = $5;",
+		user.Email, user.Phone, user.Active, user.Location, user.ID)
 	if err != nil {
 		return err
 	}
@@ -59,8 +59,8 @@ func (p *PostgresUserRepository) Save(ctx context.Context, user *entity.User) er
 func (p *PostgresUserRepository) ListActives(ctx context.Context, page, size int) ([]entity.User, error) {
 	limit := size
 	offset := limit * (page - 1)
-	rows, err := p.Db.QueryContext(ctx, "SELECT id,email,phone,active, location, created FROM users ORDER BY id LIMIT $2 OFFSET $1",
-		offset, limit)
+	rows, err := p.Db.QueryContext(ctx, "SELECT id,email,phone,active,location,created FROM users WHERE active=$1 ORDER BY id LIMIT $2 OFFSET $3",
+		true, limit, offset)
 	defer rows.Close()
 	if err != nil {
 		return nil, err
