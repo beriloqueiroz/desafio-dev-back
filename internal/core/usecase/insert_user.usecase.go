@@ -11,14 +11,14 @@ type InsertUserUseCase struct {
 	UserRepository interfaces.UserRepository
 }
 
-func (u *InsertUserUseCase) Execute(ctx context.Context, email string, phone string, location string) error {
+func (u *InsertUserUseCase) Execute(ctx context.Context, email string, phone string, location string) (string, error) {
 	user, err := entity.NewUser(uuid.NewString(), true, email, phone, location)
 	if err != nil {
-		return err
+		return "", err
 	}
 	err = u.UserRepository.Save(ctx, user)
 	if err != nil {
-		return err
+		return "", err
 	}
-	return nil
+	return user.ID, nil
 }

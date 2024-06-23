@@ -47,7 +47,7 @@ func main() {
 	deleteScheduleNotificationUseCase := usecase.DeleteScheduleNotificationUseCase{
 		ScheduleRepository: &scheduleRepository,
 	}
-	syncSchedulesUsecase := usecase.SyncSchedulesNotificationUseCase{
+	syncSchedulesUseCase := usecase.SyncSchedulesNotificationUseCase{
 		ScheduleRepository: &scheduleRepository,
 		UserRepository:     &userRepository,
 		MessageRepository:  &messageRepository,
@@ -55,7 +55,7 @@ func main() {
 	}
 
 	// webserver and routes
-	port := ":8080"
+	port := ":8000"
 	webserver := web.NewWebServer(port)
 
 	userRoutes := web.NewUserRoutes(insertUserUseCase, activateUserRepository, deactivateUserRepository)
@@ -78,7 +78,7 @@ func main() {
 	go func() {
 		for {
 			fmt.Println("Starting sync schedules")
-			err := syncSchedulesUsecase.Execute(context.Background())
+			err := syncSchedulesUseCase.Execute(context.Background())
 			if err != nil {
 				log.Println(err)
 			}

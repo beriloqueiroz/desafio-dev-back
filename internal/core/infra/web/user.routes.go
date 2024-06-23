@@ -29,6 +29,11 @@ type InsertUserInputDto struct {
 	Location string `json:"location"`
 }
 
+type InsertUserOutputDto struct {
+	Id      string `json:"id"`
+	Message string `json:"message"`
+}
+
 func (cr *UserRoutes) InsertUserHandler(w http.ResponseWriter, r *http.Request) {
 	var input InsertUserInputDto
 	err := json.NewDecoder(r.Body).Decode(&input)
@@ -36,13 +41,14 @@ func (cr *UserRoutes) InsertUserHandler(w http.ResponseWriter, r *http.Request) 
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	err = cr.InsertUseCase.Execute(r.Context(), input.Email, input.Phone, input.Location)
+	id, err := cr.InsertUseCase.Execute(r.Context(), input.Email, input.Phone, input.Location)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
-	output := &output{
-		Message: "Insert Success",
+	output := &InsertUserOutputDto{
+		Id:      id,
+		Message: "User successfully inserted",
 	}
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusCreated)
