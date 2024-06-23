@@ -22,7 +22,8 @@ func main() {
 	port := ":8080"
 	webserver := web.NewWebServer(port)
 	userRoutes := web.NewUserRoutes()
-	webserver.AddRoute("GET /", userRoutes.CreateUserHandler)
+	webserver.AddRoute("POST /user", userRoutes.CreateUserHandler)
+	webserver.AddRoute("PUT /user/{id}/{active}", userRoutes.ActivateUserHandler)
 	srvErr := make(chan error, 1)
 	go func() {
 		fmt.Println("Starting web server on port", port)

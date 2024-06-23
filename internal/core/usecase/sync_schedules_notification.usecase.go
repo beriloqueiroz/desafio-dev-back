@@ -12,7 +12,7 @@ import (
 type SyncSchedulesNotificationUseCase struct {
 	UserRepository     interfaces.UserRepository
 	ScheduleRepository interfaces.ScheduleNotificationRepository
-	NotificationQueue  interfaces.NotificationQueueRepository
+	NotificationQueues []interfaces.NotificationQueueRepository
 	MessageRepository  interfaces.MessageRepository
 }
 
@@ -42,7 +42,7 @@ func (u *SyncSchedulesNotificationUseCase) Execute(ctx context.Context) error {
 		}
 		var msgErr string
 		for _, user := range users {
-			// todo montar notificações enviar notificações para fila
+			// todo montar notificações enviar notificações para as filas
 			notification, err := entity.NewNotification(uuid.NewString(), user, *scheduler, locationsMapMsg[user.Location])
 			if err != nil {
 				fmt.Println(err)
@@ -50,13 +50,15 @@ func (u *SyncSchedulesNotificationUseCase) Execute(ctx context.Context) error {
 				scheduler.MarkStatus(msgErr)
 				continue
 			}
-			err = u.NotificationQueue.Send(ctx, notification)
-			if err != nil {
-				fmt.Println(err)
-				msgErr += fmt.Sprintf("Falha ao enviar notificação,  page: %d, id: %s, user: %s, error: %s;", page, notification.ID, user.ID, err.Error())
-				scheduler.MarkStatus(msgErr)
-				continue
+			for _, queue := range u.NotificationQueues {
+				err = queue.Send(ctx, notification)
+				if err != nil {
+					fmt.Println(err)
+					msgErr += fmt.Sprintf("Falha ao enviar notificação,  page: %d, id: %s, user: %s, error: %s;", page, notification.ID, user.ID, err.Error())
+					scheduler.MarkStatus(msgErr)
+				}
 			}
+
 		}
 		if len(users) < size {
 			break
