@@ -28,7 +28,7 @@ services:
     ports:
       - "2181:2181"
     volumes:
-      - "zookeeper-volume:/bitnami"
+      - ./.docker/zookeeper:/bitnami
     environment:
       - ALLOW_ANONYMOUS_LOGIN=yes
 
@@ -39,7 +39,7 @@ services:
     ports:
       - "9093:9093"
     volumes:
-      - ./.docker/kafka/data:/bitnami"
+      - ./.docker/kafka/data:/bitnami
     environment:
       - KAFKA_BROKER_ID=1
       - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper:2181
@@ -50,3 +50,37 @@ services:
       - KAFKA_CFG_INTER_BROKER_LISTENER_NAME=CLIENT
     depends_on:
       - zookeeper
+
+  migrate:
+    build:
+      context: ./internal/core/infra/database/migrations/
+      dockerfile: "Dockerfile"
+    container_name: migrate
+    networks:
+      - network
+    volumes:
+      - ./internal/infra/database/migrations:/migrations
+    entrypoint: dockerize -wait tcp://mysql:3306 -timeout 20s migrate
+    command: [ "-path", "/migrations", "-database",  "postgres://postgres:postgres@mgmt_db:5432/mgmt?query", "-verbose","up" ]
+    links:
+      - mgmt_db
+    depends_on:
+      - mgmt_db
+
+  mgmt_db:
+    container_name: mgmt_db
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_DB: mgmt
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./.docker/mgmt_db:/var/lib/postgresql/data
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8085:8080
