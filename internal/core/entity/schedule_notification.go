@@ -40,9 +40,6 @@ func (s *ScheduleNotification) Validate() error {
 	if uuid.Validate(s.ID) != nil {
 		msg = append(msg, "id is invalid")
 	}
-	if s.StartTime.Before(time.Now()) {
-		msg = append(msg, "start time is invalid")
-	}
 	if len(msg) > 0 {
 		return errors.New(strings.Join(msg, "; "))
 	}

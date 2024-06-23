@@ -13,13 +13,6 @@ func TestNewScheduleNotification(t *testing.T) {
 	assert.NotNil(t, schedule)
 }
 
-func TestNewScheduleNotification_TimeInPast(t *testing.T) {
-	schedule, err := NewScheduleNotification(uuid.NewString(), time.Now().Add(-time.Hour*24), false)
-	assert.NotNil(t, err)
-	assert.Nil(t, schedule)
-	assert.Equal(t, "start time is invalid", err.Error())
-}
-
 func TestNewScheduleNotification_InvalidID(t *testing.T) {
 	schedule, err := NewScheduleNotification("123", time.Now().Add(time.Hour*24), false)
 	assert.NotNil(t, err)

@@ -6,9 +6,9 @@ import (
 	"github.com/beriloqueiroz/desafio-dev-back/internal/core/entity"
 )
 
-type KafkaRepository struct{}
+type WebKafkaRepository struct{}
 
-func (k *KafkaRepository) Send(ctx context.Context, notification *entity.Notification) error {
+func (k *WebKafkaRepository) Send(ctx context.Context, notification *entity.Notification) error {
 	//TODO implement me
 	fmt.Println("send notification to kafka queue", notification)
 	return nil

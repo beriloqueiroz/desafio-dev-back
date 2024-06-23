@@ -21,5 +21,5 @@ func (p *PostgresScheduleRepository) Delete(ctx context.Context, id string) erro
 
 func (p *PostgresScheduleRepository) FindFirstNotExecutedBeforeDate(ctx context.Context, date time.Time) (*entity.ScheduleNotification, error) {
 	//TODO implement me
-	return entity.NewScheduleNotification(uuid.NewString(), time.Now().Add(-1*time.Hour), false)
+	return entity.NewScheduleNotification(uuid.NewString(), time.Now().Add(1*time.Hour), false)
 }

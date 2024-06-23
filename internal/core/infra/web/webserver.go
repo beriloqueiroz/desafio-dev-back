@@ -33,3 +33,7 @@ func (s *WebServer) Start() error {
 
 	return http.ListenAndServe(s.WebServerPort, mux)
 }
+
+type output struct {
+	Message string
+}
