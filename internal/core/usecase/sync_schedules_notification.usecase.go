@@ -63,7 +63,7 @@ func (u *SyncSchedulesNotificationUseCase) Execute(ctx context.Context) error {
 				continue
 			}
 			for _, queue := range u.NotificationQueues {
-				err = queue.Send(ctx, notification)
+				err = queue.Send(ctx, notification) // todo aqui poderia usar go rotine para enviar em paralelo
 				if err != nil {
 					slog.Error("Falha ao listar users", "scheduler id", scheduler.ID, "user id", user.ID, "queue", queue, "error", err.Error())
 					scheduler.MarkExecutedWithError()

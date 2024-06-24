@@ -58,11 +58,9 @@ func main() {
 		Db: db,
 	}
 	messageRepository := implements.CacheSyncService{}
+	webKafkaRepository := implements.NewWebKafkaRepository(kafkaNotificationQueueProduce, configs.KAFKATopic)
 	notificationQueueRepositories := []interfaces.NotificationQueueRepository{
-		&implements.WebKafkaRepository{
-			Producer: kafkaNotificationQueueProduce,
-			Topic:    configs.KAFKATopic,
-		},
+		webKafkaRepository,
 	}
 
 	// useCases
