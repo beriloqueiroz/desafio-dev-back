@@ -7,18 +7,26 @@ import (
 	"time"
 )
 
+type Status string
+
+const (
+	Pending           Status = "Pending"
+	Processing        Status = "Processing"
+	Executed          Status = "Executed"
+	ExecutedWithError Status = "ExecutedWithError"
+)
+
 type ScheduleNotification struct {
 	ID        string
 	StartTime time.Time
-	Executed  bool
-	Status    string
+	Status    Status
 }
 
-func NewScheduleNotification(id string, startTime time.Time, executed bool) (*ScheduleNotification, error) {
+func NewScheduleNotification(id string, startTime time.Time, status Status) (*ScheduleNotification, error) {
 	schedule := &ScheduleNotification{
 		ID:        id,
 		StartTime: startTime,
-		Executed:  executed,
+		Status:    status,
 	}
 	err := schedule.Validate()
 	if err != nil {
@@ -27,12 +35,16 @@ func NewScheduleNotification(id string, startTime time.Time, executed bool) (*Sc
 	return schedule, nil
 }
 
-func (s *ScheduleNotification) Execute() {
-	s.Executed = true
+func (s *ScheduleNotification) MarkExecuted() {
+	s.Status = Executed
 }
 
-func (s *ScheduleNotification) MarkStatus(msg string) {
-	s.Status = msg
+func (s *ScheduleNotification) MarkExecutedWithError() {
+	s.Status = ExecutedWithError
+}
+
+func (s *ScheduleNotification) MarkProcessing() {
+	s.Status = Processing
 }
 
 func (s *ScheduleNotification) Validate() error {

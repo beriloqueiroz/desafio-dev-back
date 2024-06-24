@@ -13,7 +13,7 @@ type CreateScheduleNotificationUseCase struct {
 }
 
 func (u *CreateScheduleNotificationUseCase) Execute(ctx context.Context, startTime time.Time) error {
-	scheduleNotification, err := entity.NewScheduleNotification(uuid.NewString(), startTime, false)
+	scheduleNotification, err := entity.NewScheduleNotification(uuid.NewString(), startTime, entity.Pending)
 	if err != nil {
 		return err
 	}

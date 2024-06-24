@@ -3,7 +3,6 @@ package main
 import (
 	"context"
 	"database/sql"
-	"fmt"
 	"github.com/beriloqueiroz/desafio-dev-back/configs"
 	"github.com/beriloqueiroz/desafio-dev-back/internal/core/infra/implements"
 	"github.com/beriloqueiroz/desafio-dev-back/internal/core/infra/web"
@@ -11,6 +10,7 @@ import (
 	"github.com/beriloqueiroz/desafio-dev-back/internal/core/usecase/interfaces"
 	_ "github.com/lib/pq"
 	"log"
+	"log/slog"
 	"os"
 	"os/signal"
 	"time"
@@ -22,6 +22,11 @@ func main() {
 	signal.Notify(sigCh, os.Interrupt)
 	initCtx, cancel := signal.NotifyContext(context.Background(), os.Interrupt)
 	defer cancel()
+
+	// config logs
+	// aqui no lugar do Stdout poderia ser um db ou elasticsearch por exemplo
+	logger := slog.New(slog.NewTextHandler(os.Stdout, nil))
+	slog.SetDefault(logger)
 
 	// load environment configs
 	configs, err := configs.LoadConfig([]string{"."})
@@ -88,14 +93,14 @@ func main() {
 	// start server
 	srvErr := make(chan error, 1)
 	go func() {
-		fmt.Println("Starting web server on port", port)
+		slog.Info("Starting web server", "on port", port)
 		srvErr <- webserver.Start()
 	}()
 
 	// jobs
 	go func() {
 		for {
-			fmt.Println("Starting sync schedules")
+			slog.Info("Starting sync schedules")
 			err := syncSchedulesUseCase.Execute(context.Background())
 			if err != nil {
 				log.Println(err)
