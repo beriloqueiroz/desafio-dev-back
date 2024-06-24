@@ -1,4 +1,4 @@
-package web_worker
+package main
 
 import (
 	"context"
@@ -9,7 +9,6 @@ import (
 	"github.com/beriloqueiroz/desafio-dev-back/internal/web_worker/usecase"
 	"github.com/confluentinc/confluent-kafka-go/kafka"
 	_ "github.com/lib/pq"
-	"log"
 	"log/slog"
 	"os"
 	"os/signal"
@@ -42,7 +41,9 @@ func main() {
 	defer db.Close()
 
 	kafkaNotificationQueueConsumer, err := kafka.NewConsumer(&kafka.ConfigMap{
-		"bootstrap.servers": configs.KAFKAUrl})
+		"bootstrap.servers": configs.KAFKAUrl,
+		"group.id":          "main",
+		"auto.offset.reset": "smallest"})
 	if err != nil {
 		panic(err)
 	}
@@ -82,21 +83,20 @@ func main() {
 
 	// jobs
 	go func() {
-		for {
-			slog.Info("Starting sync notifications")
-			err := syncNotificationUseCase.Execute(context.Background())
-			if err != nil {
-				log.Println(err)
-			}
-			time.Sleep(time.Second)
+		slog.Info("Starting sync notifications")
+		err := syncNotificationUseCase.Execute(context.Background())
+		if err != nil {
+			slog.Error(err.Error())
 		}
+		time.Sleep(time.Second)
+
 	}()
 
 	// Wait for interruption.
 	select {
 	case <-sigCh:
-		log.Println("Shutting down gracefully, CTRL+C pressed...")
+		slog.Warn("Shutting down gracefully, CTRL+C pressed...")
 	case <-initCtx.Done():
-		log.Println("Shutting down due to other reason...")
+		slog.Warn("Shutting down due to other reason...")
 	}
 }

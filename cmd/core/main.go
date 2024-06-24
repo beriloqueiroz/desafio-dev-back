@@ -10,7 +10,6 @@ import (
 	"github.com/beriloqueiroz/desafio-dev-back/internal/core/usecase/interfaces"
 	"github.com/confluentinc/confluent-kafka-go/kafka"
 	_ "github.com/lib/pq"
-	"log"
 	"log/slog"
 	"os"
 	"os/signal"
@@ -113,7 +112,8 @@ func main() {
 			slog.Info("Starting sync schedules")
 			err := syncSchedulesUseCase.Execute(context.Background())
 			if err != nil {
-				log.Println(err)
+
+				slog.Error(err.Error())
 			}
 			time.Sleep(time.Second)
 		}
@@ -122,8 +122,8 @@ func main() {
 	// Wait for interruption.
 	select {
 	case <-sigCh:
-		log.Println("Shutting down gracefully, CTRL+C pressed...")
+		slog.Warn("Shutting down gracefully, CTRL+C pressed...")
 	case <-initCtx.Done():
-		log.Println("Shutting down due to other reason...")
+		slog.Warn("Shutting down due to other reason...")
 	}
 }
