@@ -2,6 +2,7 @@ package usecase
 
 import (
 	"context"
+	"errors"
 	"github.com/beriloqueiroz/desafio-dev-back/internal/core/entity"
 	"github.com/beriloqueiroz/desafio-dev-back/internal/core/usecase/interfaces"
 	"github.com/google/uuid"
@@ -13,6 +14,9 @@ type CreateScheduleNotificationUseCase struct {
 }
 
 func (u *CreateScheduleNotificationUseCase) Execute(ctx context.Context, startTime time.Time) error {
+	if startTime.Before(time.Now()) {
+		return errors.New("start time is earlier than current time")
+	}
 	scheduleNotification, err := entity.NewScheduleNotification(uuid.NewString(), startTime, entity.Pending)
 	if err != nil {
 		return err

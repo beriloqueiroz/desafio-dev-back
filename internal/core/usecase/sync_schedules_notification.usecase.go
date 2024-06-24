@@ -69,10 +69,9 @@ func (u *SyncSchedulesNotificationUseCase) Execute(ctx context.Context) error {
 					scheduler.MarkExecutedWithError()
 				}
 			}
-
 		}
 		if len(users) < size {
-			if scheduler.Status == entity.Pending {
+			if scheduler.Status == entity.Processing {
 				scheduler.MarkExecuted()
 			}
 			break

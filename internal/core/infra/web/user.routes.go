@@ -3,6 +3,7 @@ package web
 import (
 	"encoding/json"
 	"github.com/beriloqueiroz/desafio-dev-back/internal/core/usecase"
+	"log/slog"
 	"net/http"
 )
 
@@ -37,20 +38,28 @@ type InsertUserOutputDto struct {
 func (cr *UserRoutes) InsertUserHandler(w http.ResponseWriter, r *http.Request) {
 	var input InsertUserInputDto
 	err := json.NewDecoder(r.Body).Decode(&input)
+	w.Header().Set("Content-Type", "application/json")
 	if err != nil {
-		http.Error(w, err.Error(), http.StatusBadRequest)
+		slog.Error(err.Error())
+		w.WriteHeader(http.StatusBadRequest)
+		json.NewEncoder(w).Encode(&output{
+			Message: err.Error(),
+		})
 		return
 	}
 	id, err := cr.InsertUseCase.Execute(r.Context(), input.Email, input.Phone, input.Location)
 	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
+		slog.Error(err.Error())
+		w.WriteHeader(http.StatusInternalServerError)
+		json.NewEncoder(w).Encode(&output{
+			Message: err.Error(),
+		})
 		return
 	}
 	output := &InsertUserOutputDto{
 		Id:      id,
 		Message: "User successfully inserted",
 	}
-	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusCreated)
 	json.NewEncoder(w).Encode(output)
 }
@@ -58,15 +67,18 @@ func (cr *UserRoutes) InsertUserHandler(w http.ResponseWriter, r *http.Request) 
 func (cr *UserRoutes) ActivateUserHandler(w http.ResponseWriter, r *http.Request) {
 	id := r.PathValue("id")
 	err := cr.ActivateUseCase.Execute(r.Context(), id)
+	w.Header().Set("Content-Type", "application/json")
 	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
+		slog.Error(err.Error())
+		w.WriteHeader(http.StatusInternalServerError)
+		json.NewEncoder(w).Encode(&output{
+			Message: err.Error(),
+		})
 		return
 	}
 	output := &output{
 		Message: "Activate Success",
 	}
-
-	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(output)
 }
@@ -74,15 +86,19 @@ func (cr *UserRoutes) ActivateUserHandler(w http.ResponseWriter, r *http.Request
 func (cr *UserRoutes) DeactivateUserHandler(w http.ResponseWriter, r *http.Request) {
 	id := r.PathValue("id")
 	err := cr.DeactivateUseCase.Execute(r.Context(), id)
+	w.Header().Set("Content-Type", "application/json")
 	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
+		slog.Error(err.Error())
+		w.WriteHeader(http.StatusInternalServerError)
+		json.NewEncoder(w).Encode(&output{
+			Message: err.Error(),
+		})
 		return
 	}
 	output := &output{
 		Message: "Deactivate Success",
 	}
 
-	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(output)
 }

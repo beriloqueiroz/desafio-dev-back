@@ -3,6 +3,7 @@ package web
 import (
 	"encoding/json"
 	"github.com/beriloqueiroz/desafio-dev-back/internal/core/usecase"
+	"log/slog"
 	"net/http"
 	"time"
 )
@@ -28,17 +29,27 @@ type createScheduleInputDto struct {
 func (rs *SchedulerRoutes) CreateScheduleNotificationHandler(w http.ResponseWriter, r *http.Request) {
 	var input createScheduleInputDto
 	err := json.NewDecoder(r.Body).Decode(&input)
+	w.Header().Set("Content-Type", "application/json")
 	if err != nil {
-		http.Error(w, err.Error(), http.StatusBadRequest)
+		slog.Error(err.Error())
+		w.WriteHeader(http.StatusBadRequest)
+		json.NewEncoder(w).Encode(&output{
+			Message: err.Error(),
+		})
+		return
 	}
 	err = rs.CreateScheduleNotificationUseCase.Execute(r.Context(), input.StartTime)
 	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
+		slog.Error(err.Error())
+		w.WriteHeader(http.StatusInternalServerError)
+		json.NewEncoder(w).Encode(&output{
+			Message: err.Error(),
+		})
+		return
 	}
 	output := &output{
 		Message: "Insert Success",
 	}
-	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusCreated)
 	json.NewEncoder(w).Encode(output)
 }
@@ -46,13 +57,18 @@ func (rs *SchedulerRoutes) CreateScheduleNotificationHandler(w http.ResponseWrit
 func (rs *SchedulerRoutes) DeleteScheduleNotificationHandler(w http.ResponseWriter, r *http.Request) {
 	id := r.PathValue("id")
 	err := rs.DeleteScheduleNotificationUseCase.Execute(r.Context(), id)
+	w.Header().Set("Content-Type", "application/json")
 	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
+		slog.Error(err.Error())
+		w.WriteHeader(http.StatusInternalServerError)
+		json.NewEncoder(w).Encode(&output{
+			Message: err.Error(),
+		})
+		return
 	}
 	output := &output{
 		Message: "Delete Success",
 	}
-	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(output)
 }
