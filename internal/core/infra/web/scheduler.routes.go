@@ -22,7 +22,7 @@ func NewSchedulerRoutes(
 }
 
 type createScheduleInputDto struct {
-	StartTIme time.Time `json:"start_time"`
+	StartTime time.Time `json:"start_time"`
 }
 
 func (rs *SchedulerRoutes) CreateScheduleNotificationHandler(w http.ResponseWriter, r *http.Request) {
@@ -31,13 +31,14 @@ func (rs *SchedulerRoutes) CreateScheduleNotificationHandler(w http.ResponseWrit
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 	}
-	err = rs.CreateScheduleNotificationUseCase.Execute(r.Context(), input.StartTIme)
+	err = rs.CreateScheduleNotificationUseCase.Execute(r.Context(), input.StartTime)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 	}
 	output := &output{
 		Message: "Insert Success",
 	}
+	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusCreated)
 	json.NewEncoder(w).Encode(output)
 }
@@ -51,6 +52,7 @@ func (rs *SchedulerRoutes) DeleteScheduleNotificationHandler(w http.ResponseWrit
 	output := &output{
 		Message: "Delete Success",
 	}
+	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(output)
 }

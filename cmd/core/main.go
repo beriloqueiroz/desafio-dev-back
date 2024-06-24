@@ -40,7 +40,9 @@ func main() {
 	userRepository := implements.PostgresUserRepository{
 		Db: db,
 	}
-	scheduleRepository := implements.PostgresScheduleRepository{}
+	scheduleRepository := implements.PostgresScheduleRepository{
+		Db: db,
+	}
 	messageRepository := implements.CacheSyncService{}
 	notificationQueueRepositories := []interfaces.NotificationQueueRepository{
 		&implements.WebKafkaRepository{},
@@ -80,8 +82,8 @@ func main() {
 	webserver.AddRoute("PUT /user/{id}/deactivate", userRoutes.DeactivateUserHandler)
 
 	scheduleRoutes := web.NewSchedulerRoutes(createScheduleNotificationUseCase, deleteScheduleNotificationUseCase)
-	webserver.AddRoute("POST /schedule-notification", scheduleRoutes.CreateScheduleNotificationHandler)
-	webserver.AddRoute("DELETE /schedule-notification/{id}", scheduleRoutes.DeleteScheduleNotificationHandler)
+	webserver.AddRoute("POST /schedule", scheduleRoutes.CreateScheduleNotificationHandler)
+	webserver.AddRoute("DELETE /schedule/{id}", scheduleRoutes.DeleteScheduleNotificationHandler)
 
 	// start server
 	srvErr := make(chan error, 1)

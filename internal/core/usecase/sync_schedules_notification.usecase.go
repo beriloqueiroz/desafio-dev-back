@@ -19,14 +19,24 @@ type SyncSchedulesNotificationUseCase struct {
 func (u *SyncSchedulesNotificationUseCase) Execute(ctx context.Context) error {
 	// todo buscar primeiro scheduler não executados com data anterior a atual
 	scheduler, err := u.ScheduleRepository.FindFirstNotExecutedBeforeDate(ctx, time.Now())
+	if scheduler == nil && err == nil {
+		return nil
+	}
 	if err != nil {
 		return err
 	}
+	fmt.Println(fmt.Sprintf("Iniciando schedule: %s", scheduler.ID))
 	// todo buscar users ativos com paginação
 	page := 1
 	size := 500
 	for {
 		users, err := u.UserRepository.ListActives(ctx, page, size)
+		if users == nil || err != nil {
+			msg := fmt.Sprintf("Sem usuários para schedule,  schedule: %s", scheduler.ID)
+			fmt.Println(msg)
+			scheduler.MarkStatus(msg)
+			break
+		}
 		if err != nil {
 			fmt.Println(err)
 			scheduler.MarkStatus(fmt.Sprintf("Falha ao lista users,  page: %d, error: %s", page, err.Error()))
@@ -67,6 +77,7 @@ func (u *SyncSchedulesNotificationUseCase) Execute(ctx context.Context) error {
 	}
 	// todo marcar schedulers como executed
 	scheduler.Execute()
+	u.ScheduleRepository.Save(ctx, scheduler)
 	return nil
 }
 

@@ -62,6 +62,9 @@ func (p *PostgresUserRepository) ListActives(ctx context.Context, page, size int
 	rows, err := p.Db.QueryContext(ctx, "SELECT id,email,phone,active,location,created FROM users WHERE active=$1 ORDER BY id LIMIT $2 OFFSET $3",
 		true, limit, offset)
 	defer rows.Close()
+	if errors.Is(err, sql.ErrNoRows) {
+		return nil, nil
+	}
 	if err != nil {
 		return nil, err
 	}
