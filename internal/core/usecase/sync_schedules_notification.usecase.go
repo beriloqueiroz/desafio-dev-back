@@ -2,10 +2,10 @@ package usecase
 
 import (
 	"context"
-	"fmt"
 	"github.com/beriloqueiroz/desafio-dev-back/internal/core/entity"
 	"github.com/beriloqueiroz/desafio-dev-back/internal/core/usecase/interfaces"
 	"github.com/google/uuid"
+	"log/slog"
 	"time"
 )
 
@@ -25,7 +25,7 @@ func (u *SyncSchedulesNotificationUseCase) Execute(ctx context.Context) error {
 	if err != nil {
 		return err
 	}
-	fmt.Println(fmt.Sprintf("Iniciando schedule: %s", scheduler.ID))
+	slog.Info("Iniciando schedule", "scheduler id", scheduler.ID)
 	scheduler.MarkProcessing()
 	err = u.ScheduleRepository.Save(ctx, scheduler)
 	if err != nil {
@@ -37,12 +37,12 @@ func (u *SyncSchedulesNotificationUseCase) Execute(ctx context.Context) error {
 	for {
 		users, err := u.UserRepository.ListActives(ctx, page, size)
 		if users == nil && err == nil {
-			fmt.Println(fmt.Sprintf("Sem usuários para schedule,  schedule: %s", scheduler.ID))
+			slog.Warn("Sem usuários para schedule", "schedule id", scheduler.ID)
 			scheduler.MarkExecuted()
 			break
 		}
 		if err != nil {
-			fmt.Println(fmt.Sprintf("Falha ao lista users,  page: %d, error: %s", page, err.Error()))
+			slog.Error("Falha ao listar users", "scheduler id", scheduler.ID, "error", err.Error())
 			scheduler.MarkExecutedWithError()
 			break
 		}
@@ -50,7 +50,7 @@ func (u *SyncSchedulesNotificationUseCase) Execute(ctx context.Context) error {
 		// todo buscar mensagens com base nas cidades dos usuários
 		locationsMapMsg, err := u.MessageRepository.ListByLocations(ctx, uniquesLocations)
 		if err != nil {
-			fmt.Println(fmt.Sprintf("Falha ao lista locations,  page: %d, error: %s", page, err.Error()))
+			slog.Error("Falha ao listar localidades", "scheduler id", scheduler.ID, "error", err.Error())
 			scheduler.MarkExecutedWithError()
 			break
 		}
@@ -58,14 +58,14 @@ func (u *SyncSchedulesNotificationUseCase) Execute(ctx context.Context) error {
 			// todo montar notificações enviar notificações para as filas
 			notification, err := entity.NewNotification(uuid.NewString(), user, *scheduler, locationsMapMsg[user.Location])
 			if err != nil {
-				fmt.Println(fmt.Sprintf("Falha ao enviar notificação,  page: %d, id: %s, user: %s, error: %s;", page, notification.ID, user.ID, err.Error()))
+				slog.Error("Falha ao listar users", "scheduler id", scheduler.ID, "user id", user.ID, "error", err.Error())
 				scheduler.MarkExecutedWithError()
 				continue
 			}
 			for _, queue := range u.NotificationQueues {
 				err = queue.Send(ctx, notification)
 				if err != nil {
-					fmt.Println(fmt.Sprintf("Falha ao enviar notificação,  page: %d, id: %s, user: %s, error: %s;", page, notification.ID, user.ID, err.Error()))
+					slog.Error("Falha ao listar users", "scheduler id", scheduler.ID, "user id", user.ID, "queue", queue, "error", err.Error())
 					scheduler.MarkExecutedWithError()
 				}
 			}

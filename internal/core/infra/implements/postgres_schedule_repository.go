@@ -4,7 +4,6 @@ import (
 	"context"
 	"database/sql"
 	"errors"
-	"fmt"
 	"github.com/beriloqueiroz/desafio-dev-back/internal/core/entity"
 	"time"
 )
@@ -21,7 +20,6 @@ type Schedule struct {
 
 func (p *PostgresScheduleRepository) Save(ctx context.Context, scheduleNotification *entity.ScheduleNotification) error {
 	var s Schedule
-	fmt.Println(scheduleNotification)
 	err := p.Db.QueryRowContext(ctx, "SELECT id, start_time, status FROM schedules WHERE id = $1", scheduleNotification.ID).Scan(
 		&s.ID, &s.StartTime, &s.Status)
 	if errors.Is(err, sql.ErrNoRows) {
