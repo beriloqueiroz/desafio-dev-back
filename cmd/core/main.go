@@ -8,6 +8,7 @@ import (
 	"github.com/beriloqueiroz/desafio-dev-back/internal/core/infra/web"
 	"github.com/beriloqueiroz/desafio-dev-back/internal/core/usecase"
 	"github.com/beriloqueiroz/desafio-dev-back/internal/core/usecase/interfaces"
+	"github.com/confluentinc/confluent-kafka-go/kafka"
 	_ "github.com/lib/pq"
 	"log"
 	"log/slog"
@@ -41,6 +42,14 @@ func main() {
 	}
 	defer db.Close()
 
+	kafkaNotificationQueueProduce, err := kafka.NewProducer(&kafka.ConfigMap{
+		"bootstrap.servers": configs.KAFKAUrl,
+	})
+	if err != nil {
+		panic(err)
+	}
+	defer kafkaNotificationQueueProduce.Close()
+
 	// repositories
 	userRepository := implements.PostgresUserRepository{
 		Db: db,
@@ -50,7 +59,10 @@ func main() {
 	}
 	messageRepository := implements.CacheSyncService{}
 	notificationQueueRepositories := []interfaces.NotificationQueueRepository{
-		&implements.WebKafkaRepository{},
+		&implements.WebKafkaRepository{
+			Producer: kafkaNotificationQueueProduce,
+			Topic:    configs.KAFKATopic,
+		},
 	}
 
 	// useCases
