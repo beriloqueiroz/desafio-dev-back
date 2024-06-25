@@ -6,5 +6,5 @@ import (
 )
 
 type LocationRepository interface {
-	ListUniquesLocations(ctx context.Context, page, size int) ([]entity.Location, error)
+	ListUniqueLocations(ctx context.Context, page, size int) ([]entity.Location, error)
 }
