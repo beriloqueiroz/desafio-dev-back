@@ -76,7 +76,7 @@ func (k *WebKafkaRepository) Read(ctx context.Context, ch chan []entity.Notifica
 			run = false
 			return errors.New(msg)
 		default:
-			slog.Info(fmt.Sprintf("Ignored %v\n", e))
+			//slog.Info(fmt.Sprintf("Ignored %v\n", e))
 			//return nil
 		}
 	}

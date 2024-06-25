@@ -3,9 +3,7 @@ package main
 import (
 	"context"
 	"database/sql"
-	"fmt"
 	"github.com/beriloqueiroz/desafio-dev-back/configs"
-	"github.com/beriloqueiroz/desafio-dev-back/internal/cache_sync_service/entity"
 	"github.com/beriloqueiroz/desafio-dev-back/internal/cache_sync_service/infra/implements"
 	"github.com/beriloqueiroz/desafio-dev-back/internal/cache_sync_service/usecase"
 	_ "github.com/lib/pq"
@@ -52,20 +50,6 @@ func main() {
 	locationRepository := &implements.PostgresLocationRepository{
 		Db: db,
 	}
-	cptecMessageGateway := implements.NewCptecMessageGateway()
-
-	// usecases
-	getMessageUsecase := usecase.NewGetMsgsUseCase(redisCacheRepository, cptecMessageGateway)
-
-	if err != nil {
-		panic(err)
-	}
-	resMap, err := getMessageUsecase.Execute(context.Background(), []entity.Location{
-		{"São Paulo", "SP"},
-		{"Fortaleza", "CE"},
-		{"Quixadá", "CE"},
-	})
-	fmt.Println(resMap)
 
 	syncUseCase := usecase.NewSyncUseCase(locationRepository, redisCacheRepository)
 

@@ -1,8 +1,10 @@
 package main
 
 import (
+	"context"
 	"encoding/json"
 	"fmt"
+	"github.com/redis/go-redis/v9"
 	"net/http"
 	"time"
 )
@@ -42,10 +44,21 @@ func main() {
 			})
 			return
 		}
-		fmt.Println("Input: ", len(input), input)
+		clientRedis := redis.NewClient(&redis.Options{
+			Addr:     "localhost:6379",
+			Password: "redis123",
+			DB:       0,
+		})
+		ctx := context.Background()
+		fmt.Println(clientRedis.Get(ctx, "São Paulo - SP"))
+		fmt.Println(clientRedis.Get(ctx, "Fortaleza - CE"))
+		fmt.Println(clientRedis.Get(ctx, "Quixadá - CE"))
+		fmt.Println(clientRedis.Get(ctx, "Baturité - CE"))
+		//fmt.Println("Input: ", len(input), input)
 		json.NewEncoder(w).Encode(input)
 		w.WriteHeader(http.StatusOK)
 	})
+
 	fmt.Println("Listening on :9000")
 	http.ListenAndServe(":9000", mux)
 }
