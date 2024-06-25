@@ -6,20 +6,18 @@ import (
 )
 
 type GetMsgsUseCase struct {
-	LocationRepository interfaces.LocationRepository
+	CacheRepository interfaces.CacheRepository
+	MessageGateway  interfaces.MessageGateway
 }
 
-func NewGetMsgsUseCase(locationRepository interfaces.LocationRepository) *GetMsgsUseCase {
+func NewGetMsgsUseCase(cacheRepository interfaces.CacheRepository) *GetMsgsUseCase {
 	return &GetMsgsUseCase{
-		LocationRepository: locationRepository,
+		CacheRepository: cacheRepository,
 	}
 }
 
 func (u *GetMsgsUseCase) Execute(locations []entity.Location) (map[string]string, error) {
-	//TODO implement me
-	res := make(map[string]string)
-	for _, loc := range locations {
-		res[loc.String()] = loc.String() + " teste calor quintura e mormaço"
-	}
-	return res, nil
+	// captura no cache e retorna
+	// se não tem, captura do message gateway e popula cache
+	panic("implement me")
 }
