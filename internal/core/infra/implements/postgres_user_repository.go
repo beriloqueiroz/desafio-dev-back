@@ -28,7 +28,11 @@ func (p *PostgresUserRepository) Find(ctx context.Context, id string) (*entity.U
 	if err != nil {
 		return nil, err
 	}
-	return entity.NewUser(id, u.Active, u.Email, u.Phone, u.Location)
+	loc, err := entity.LocationByString(u.Location)
+	if err != nil {
+		return nil, err
+	}
+	return entity.NewUser(id, u.Active, u.Email, u.Phone, loc)
 }
 
 func (p *PostgresUserRepository) Save(ctx context.Context, user *entity.User) error {
@@ -38,7 +42,7 @@ func (p *PostgresUserRepository) Save(ctx context.Context, user *entity.User) er
 	if errors.Is(err, sql.ErrNoRows) {
 		// insert
 		_, err = p.Db.ExecContext(ctx, "INSERT INTO users (id, email, phone, active, location, created) VALUES ($1, $2, $3, $4, $5, $6)",
-			user.ID, user.Email, user.Phone, user.Active, user.Location, user.CreateTime)
+			user.ID, user.Email, user.Phone, user.Active, user.Location.String(), user.CreateTime)
 		if err != nil {
 			return err
 		}
@@ -49,7 +53,7 @@ func (p *PostgresUserRepository) Save(ctx context.Context, user *entity.User) er
 	}
 	// update
 	_, err = p.Db.ExecContext(ctx, "UPDATE users SET email = $1, phone = $2, active = $3, location = $4  WHERE id = $5;",
-		user.Email, user.Phone, user.Active, user.Location, user.ID)
+		user.Email, user.Phone, user.Active, user.Location.String(), user.ID)
 	if err != nil {
 		return err
 	}
@@ -74,7 +78,11 @@ func (p *PostgresUserRepository) ListActives(ctx context.Context, page, size int
 		if err := rows.Scan(&user.ID, &user.Email, &user.Phone, &user.Active, &user.Location, &user.Created); err != nil {
 			return nil, err
 		}
-		u, err := entity.NewUser(user.ID, user.Active, user.Email, user.Phone, user.Location)
+		loc, err := entity.LocationByString(user.Location)
+		if err != nil {
+			return nil, err
+		}
+		u, err := entity.NewUser(user.ID, user.Active, user.Email, user.Phone, loc)
 		if err != nil {
 			return nil, err
 		}

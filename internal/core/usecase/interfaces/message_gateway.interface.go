@@ -1,6 +1,9 @@
 package interfaces
 
-import "context"
+import (
+	"context"
+	"github.com/beriloqueiroz/desafio-dev-back/internal/core/entity"
+)
 
 type MessageLocationOutputDTO struct {
 	Location string
@@ -8,5 +11,5 @@ type MessageLocationOutputDTO struct {
 }
 
 type MessageGateway interface {
-	ListByLocations(ctx context.Context, locations []string) (map[string]string, error)
+	ListByLocations(ctx context.Context, locations []entity.Location) (map[string]string, error)
 }

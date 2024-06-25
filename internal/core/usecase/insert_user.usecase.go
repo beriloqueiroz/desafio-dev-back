@@ -12,7 +12,11 @@ type InsertUserUseCase struct {
 }
 
 func (u *InsertUserUseCase) Execute(ctx context.Context, email string, phone string, location string) (string, error) {
-	user, err := entity.NewUser(uuid.NewString(), true, email, phone, location)
+	loc, err := entity.LocationByString(location)
+	if err != nil {
+		return "", err
+	}
+	user, err := entity.NewUser(uuid.NewString(), true, email, phone, loc)
 	if err != nil {
 		return "", err
 	}

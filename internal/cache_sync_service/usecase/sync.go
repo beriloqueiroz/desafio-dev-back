@@ -1,7 +1,6 @@
 package usecase
 
 type SyncUseCase struct {
-	locations
 }
 
 func NewSyncUseCase() *SyncUseCase {

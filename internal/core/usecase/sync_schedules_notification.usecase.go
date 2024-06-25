@@ -56,7 +56,7 @@ func (u *SyncSchedulesNotificationUseCase) Execute(ctx context.Context) error {
 		}
 		for _, user := range users {
 			// todo montar notificações enviar notificações para as filas
-			notification, err := entity.NewNotification(uuid.NewString(), user, *scheduler, locationsMapMsg[user.Location])
+			notification, err := entity.NewNotification(uuid.NewString(), user, *scheduler, locationsMapMsg[user.Location.String()])
 			if err != nil {
 				slog.Error("Falha ao listar users", "scheduler id", scheduler.ID, "user id", user.ID, "error", err.Error())
 				scheduler.MarkExecutedWithError()
@@ -86,12 +86,12 @@ func (u *SyncSchedulesNotificationUseCase) Execute(ctx context.Context) error {
 	return nil
 }
 
-func getUniquesLocation(sliceList []entity.User) []string {
+func getUniquesLocation(sliceList []entity.User) []entity.Location {
 	allKeys := make(map[string]bool)
-	list := []string{}
+	var list []entity.Location
 	for _, item := range sliceList {
-		if _, value := allKeys[item.Location]; !value {
-			allKeys[item.Location] = true
+		if _, value := allKeys[item.Location.String()]; !value {
+			allKeys[item.Location.String()] = true
 			list = append(list, item.Location)
 		}
 	}
