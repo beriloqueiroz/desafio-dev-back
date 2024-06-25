@@ -7,8 +7,11 @@ type SyncUseCase struct {
 	CacheRepository    interfaces.CacheRepository
 }
 
-func NewSyncUseCase() *SyncUseCase {
-	return &SyncUseCase{}
+func NewSyncUseCase(locationRepository interfaces.LocationRepository, cacheRepository interfaces.CacheRepository) *SyncUseCase {
+	return &SyncUseCase{
+		LocationRepository: locationRepository,
+		CacheRepository:    cacheRepository,
+	}
 }
 
 func (u *SyncUseCase) Execute() {

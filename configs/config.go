@@ -8,6 +8,8 @@ type conf struct {
 	KAFKAUrl   string `mapstructure:"KAFKA_URL"`
 	KAFKATopic string `mapstructure:"KAFKA_TOPIC"`
 	WebAppUrl  string `mapstructure:"WEB_APP_URL"`
+	CacheUri   string `mapstructure:"CACHE_URI"`
+	CachePass  string `mapstructure:"CACHE_PASS"`
 }
 
 func LoadConfig(paths []string) (*conf, error) {

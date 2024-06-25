@@ -3,14 +3,15 @@ package main
 import (
 	"context"
 	"database/sql"
-	"fmt"
 	"github.com/beriloqueiroz/desafio-dev-back/configs"
 	"github.com/beriloqueiroz/desafio-dev-back/internal/cache_sync_service/infra/implements"
-
+	"github.com/beriloqueiroz/desafio-dev-back/internal/cache_sync_service/usecase"
 	_ "github.com/lib/pq"
+	"github.com/redis/go-redis/v9"
 	"log/slog"
 	"os"
 	"os/signal"
+	"time"
 )
 
 func main() {
@@ -38,16 +39,27 @@ func main() {
 	}
 	defer db.Close()
 
+	clientRedis := redis.NewClient(&redis.Options{
+		Addr:     configs.CacheUri,
+		Password: configs.CachePass,
+		DB:       0,
+	})
+
+	redisCacheRepository := implements.NewRedisCacheRepository(clientRedis)
+
 	// repositories
-	locationRepository := implements.PostgresLocationRepository{
+	locationRepository := &implements.PostgresLocationRepository{
 		Db: db,
 	}
 
-	res, err := locationRepository.ListUniqueLocations(context.Background(), 1, 500)
-	if err != nil {
-		panic(err)
-	}
-	fmt.Println(res)
+	syncUseCase := usecase.NewSyncUseCase(locationRepository, redisCacheRepository)
+
+	go func() {
+		for {
+			syncUseCase.Execute()
+			time.Sleep(time.Hour * 12) // o 12 pode ser variável de ambiente
+		}
+	}()
 
 	// Wait for interruption.
 	select {

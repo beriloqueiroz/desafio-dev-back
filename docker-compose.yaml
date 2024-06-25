@@ -19,7 +19,7 @@ services:
     volumes:
     - ./.docker/redis/data:/root/redis
     - ./.docker/redis/redis.conf:/usr/local/etc/redis/redis.conf
-    command: redis-server /usr/local/etc/redis/redis.conf --requirepass my-password
+    command: redis-server /usr/local/etc/redis/redis.conf --requirepass redis123
 
   migrate:
     build:
