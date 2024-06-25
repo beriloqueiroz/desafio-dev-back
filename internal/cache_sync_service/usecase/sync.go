@@ -9,5 +9,6 @@ func NewSyncUseCase() *SyncUseCase {
 
 func (u *SyncUseCase) Execute() {
 	// captura locations
-	//
+	// captura mensagens
+	// popula cache
 }
