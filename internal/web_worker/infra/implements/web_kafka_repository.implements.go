@@ -57,7 +57,6 @@ func (k *WebKafkaRepository) Read(ctx context.Context, ch chan []entity.Notifica
 				break
 			}
 			notifications = append(notifications, notification)
-			ch <- notifications
 			slog.Info(fmt.Sprintf("%% Message on %s:\n%s\n", e.TopicPartition, string(e.Value)))
 		case kafka.PartitionEOF:
 			msg := fmt.Sprintf("%% Reached %v\n", e)
@@ -70,6 +69,10 @@ func (k *WebKafkaRepository) Read(ctx context.Context, ch chan []entity.Notifica
 			run = false
 			return errors.New(msg)
 		default:
+			if len(notifications) > 0 {
+				ch <- notifications
+				notifications = notifications[:0]
+			}
 			//slog.Info(fmt.Sprintf("Ignored %v\n", e))
 			//return nil
 		}

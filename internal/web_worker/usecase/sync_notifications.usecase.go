@@ -14,8 +14,7 @@ type SyncNotificationUseCase struct {
 
 func (u *SyncNotificationUseCase) Execute(ctx context.Context) error {
 	// ler fila
-	batchSize := 10 // pode ser uma variável de ambiente
-	ch := make(chan []entity.Notification, batchSize)
+	ch := make(chan []entity.Notification, 1)
 	go func() {
 		err := u.NotificationQueues.Read(ctx, ch)
 		if err != nil {
