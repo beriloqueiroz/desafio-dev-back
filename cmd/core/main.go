@@ -56,7 +56,7 @@ func main() {
 	scheduleRepository := implements.PostgresScheduleRepository{
 		Db: db,
 	}
-	messageRepository := implements.CacheSyncService{}
+	messageGateway := implements.CacheSyncService{}
 	webKafkaRepository := implements.NewWebKafkaRepository(kafkaNotificationQueueProduce, configs.KAFKATopic)
 	notificationQueueRepositories := []interfaces.NotificationQueueRepository{
 		webKafkaRepository,
@@ -82,7 +82,7 @@ func main() {
 	syncSchedulesUseCase := usecase.SyncSchedulesNotificationUseCase{
 		ScheduleRepository: &scheduleRepository,
 		UserRepository:     &userRepository,
-		MessageRepository:  &messageRepository,
+		MessageGateway:     &messageGateway,
 		NotificationQueues: notificationQueueRepositories,
 	}
 

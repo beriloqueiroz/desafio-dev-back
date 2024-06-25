@@ -13,7 +13,7 @@ type SyncSchedulesNotificationUseCase struct {
 	UserRepository     interfaces.UserRepository
 	ScheduleRepository interfaces.ScheduleNotificationRepository
 	NotificationQueues []interfaces.NotificationQueueRepository
-	MessageRepository  interfaces.MessageRepository
+	MessageGateway     interfaces.MessageGateway
 }
 
 func (u *SyncSchedulesNotificationUseCase) Execute(ctx context.Context) error {
@@ -48,7 +48,7 @@ func (u *SyncSchedulesNotificationUseCase) Execute(ctx context.Context) error {
 		}
 		uniquesLocations := getUniquesLocation(users)
 		// todo buscar mensagens com base nas cidades dos usuários
-		locationsMapMsg, err := u.MessageRepository.ListByLocations(ctx, uniquesLocations)
+		locationsMapMsg, err := u.MessageGateway.ListByLocations(ctx, uniquesLocations)
 		if err != nil {
 			slog.Error("Falha ao listar localidades", "scheduler id", scheduler.ID, "error", err.Error())
 			scheduler.MarkExecutedWithError()

@@ -7,6 +7,6 @@ type MessageLocationOutputDTO struct {
 	Message  string
 }
 
-type MessageRepository interface {
+type MessageGateway interface {
 	ListByLocations(ctx context.Context, locations []string) (map[string]string, error)
 }

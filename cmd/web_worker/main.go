@@ -2,10 +2,8 @@ package main
 
 import (
 	"context"
-	"database/sql"
 	"github.com/beriloqueiroz/desafio-dev-back/configs"
 	"github.com/beriloqueiroz/desafio-dev-back/internal/web_worker/infra/implements"
-	"github.com/beriloqueiroz/desafio-dev-back/internal/web_worker/infra/web"
 	"github.com/beriloqueiroz/desafio-dev-back/internal/web_worker/usecase"
 	"github.com/confluentinc/confluent-kafka-go/kafka"
 	_ "github.com/lib/pq"
@@ -33,13 +31,6 @@ func main() {
 		panic(err)
 	}
 
-	// dbs
-	db, err := sql.Open(configs.DBDriver, configs.DBUri)
-	if err != nil {
-		panic(err)
-	}
-	defer db.Close()
-
 	kafkaNotificationQueueConsumer, err := kafka.NewConsumer(&kafka.ConfigMap{
 		"bootstrap.servers": configs.KAFKAUrl,
 		"group.id":          "main",
@@ -54,32 +45,14 @@ func main() {
 	defer kafkaNotificationQueueConsumer.Close()
 
 	// repositories
-	userRepository := implements.PostgresUserRepository{
-		Db: db,
-	}
-
 	webKafkaRepository := implements.NewWebKafkaRepository(kafkaNotificationQueueConsumer, configs.KAFKATopic)
 	webServiceClient := implements.NewWebRestService(configs.WebAppUrl)
 
 	// useCases
-	activateUserRepository := usecase.ActivateUserUseCase{
-		UserRepository: &userRepository,
-	}
-	deactivateUserRepository := usecase.DeactivateUserUseCase{
-		UserRepository: &userRepository,
-	}
 	syncNotificationUseCase := usecase.SyncNotificationUseCase{
 		WebService:         webServiceClient,
 		NotificationQueues: webKafkaRepository,
 	}
-
-	// webserver and routes
-	port := ":3333"
-	webserver := web.NewWebServer(port)
-
-	userRoutes := web.NewUserRoutes(activateUserRepository, deactivateUserRepository)
-	webserver.AddRoute("PUT /user/{id}/activate", userRoutes.ActivateUserHandler)
-	webserver.AddRoute("PUT /user/{id}/deactivate", userRoutes.DeactivateUserHandler)
 
 	// jobs
 	go func() {
