@@ -25,9 +25,10 @@ func NewUserRoutes(
 }
 
 type InsertUserInputDto struct {
-	Email    string `json:"email"`
-	Phone    string `json:"phone"`
-	Location string `json:"location"`
+	Email string `json:"email"`
+	Phone string `json:"phone"`
+	City  string `json:"city"`
+	State string `json:"state"`
 }
 
 type InsertUserOutputDto struct {
@@ -47,7 +48,7 @@ func (cr *UserRoutes) InsertUserHandler(w http.ResponseWriter, r *http.Request) 
 		})
 		return
 	}
-	id, err := cr.InsertUseCase.Execute(r.Context(), input.Email, input.Phone, input.Location)
+	id, err := cr.InsertUseCase.Execute(r.Context(), input.Email, input.Phone, input.City, input.State)
 	if err != nil {
 		slog.Error(err.Error())
 		w.WriteHeader(http.StatusInternalServerError)

@@ -14,7 +14,7 @@ type InputDto struct {
 		Active     bool   `json:"Active"`
 		Email      string `json:"Email"`
 		Phone      string `json:"Phone"`
-		Location   string `json:"Location"`
+		Location   string `json:"City"`
 		CreateTime string `json:"CreateTime"`
 	} `json:"User"`
 	ScheduleNotification struct {
