@@ -101,14 +101,3 @@ func TestUser_InvalidCity(t *testing.T) {
 	assert.Equal(t, err.Error(), "location city is required")
 	assert.Nil(t, user)
 }
-
-func TestLocation_String(t *testing.T) {
-	l, err := LocationByString("São Paulo - SP")
-	assert.Nil(t, err)
-	assert.Equal(t, "SP", l.State)
-	assert.Equal(t, "São Paulo", l.City)
-	l, err = LocationByString("Rio-de-janeiro - RJ")
-	assert.Nil(t, err)
-	assert.Equal(t, "RJ", l.State)
-	assert.Equal(t, "Rio-de-janeiro", l.City)
-}

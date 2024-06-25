@@ -4,7 +4,6 @@ import (
 	"errors"
 	"fmt"
 	"github.com/google/uuid"
-	"regexp"
 	"strings"
 	"time"
 )
@@ -16,19 +15,6 @@ type Location struct {
 
 func (l Location) String() string {
 	return fmt.Sprintf("%s - %s", l.City, l.State)
-}
-
-func LocationByString(s string) (Location, error) {
-	pattern := `\s-\s[A-Z]{2}$`
-	re := regexp.MustCompile(pattern)
-	if !re.MatchString(s) {
-		return Location{}, errors.New("invalid location, only format: 'city name - UF'")
-	}
-	state := s[len(s)-2:]
-	return Location{
-		State: state,
-		City:  strings.ReplaceAll(s, fmt.Sprintf(" - %s", state), ""),
-	}, nil
 }
 
 type User struct {
