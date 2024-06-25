@@ -44,6 +44,8 @@ func main() {
 
 	kafkaNotificationQueueProduce, err := kafka.NewProducer(&kafka.ConfigMap{
 		"bootstrap.servers": configs.KAFKAUrl,
+		"client.id":         "desafio-de-back",
+		"acks":              "all",
 	})
 	if err != nil {
 		panic(err)

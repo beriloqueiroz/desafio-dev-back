@@ -39,15 +39,17 @@ func NewWebKafkaRepository(consumer *kafka.Consumer, topic string) *WebKafkaRepo
 }
 
 func (k *WebKafkaRepository) Read(ctx context.Context, ch chan []entity.Notification) error {
-	msg_count := 0
 	run := true
-	min_commit_count := 2
+	err := k.Consumer.SubscribeTopics([]string{k.Topic}, nil)
+	if err != nil {
+		return err
+	}
+	defer k.Consumer.Close()
 	var notifications []entity.Notification
 	for run == true {
 		ev := k.Consumer.Poll(100)
 		switch e := ev.(type) {
 		case *kafka.Message:
-			msg_count += 1
 			var notification entity.Notification
 			err := json.Unmarshal(e.Value, &notification)
 			if err != nil {
@@ -56,14 +58,6 @@ func (k *WebKafkaRepository) Read(ctx context.Context, ch chan []entity.Notifica
 			}
 			notifications = append(notifications, notification)
 			ch <- notifications
-			if msg_count%min_commit_count == 0 {
-				go func() {
-					_, err := k.Consumer.Commit()
-					if err != nil {
-						slog.Error(err.Error())
-					}
-				}()
-			}
 			slog.Info(fmt.Sprintf("%% Message on %s:\n%s\n", e.TopicPartition, string(e.Value)))
 		case kafka.PartitionEOF:
 			msg := fmt.Sprintf("%% Reached %v\n", e)
