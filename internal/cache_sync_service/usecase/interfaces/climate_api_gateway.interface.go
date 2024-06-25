@@ -1,5 +1,5 @@
 package interfaces
 
 type ClimateAPIGateway interface {
-	SearchLocation(location string)
+	ClimateAndWaveByLocation(city string, state string) (*string, error)
 }
