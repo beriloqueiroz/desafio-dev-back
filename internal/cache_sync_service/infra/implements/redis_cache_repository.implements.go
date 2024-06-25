@@ -16,7 +16,7 @@ func NewRedisCacheRepository(client *redis.Client) *RedisCacheRepository {
 	}
 }
 
-func (r *RedisCacheRepository) FindByKey(ctx context.Context, key string) (string, error) {
+func (r *RedisCacheRepository) Find(ctx context.Context, key string) (string, error) {
 	val, err := r.Client.Get(ctx, key).Result()
 	if err != nil {
 		return "", err
@@ -25,7 +25,11 @@ func (r *RedisCacheRepository) FindByKey(ctx context.Context, key string) (strin
 }
 
 func (r *RedisCacheRepository) Save(ctx context.Context, key string, value string) error {
-	err := r.Client.Set(ctx, key, value, 0).Err()
+	now := time.Now()
+	yyyy, mm, dd := now.Date()
+	tomorrow := time.Date(yyyy, mm, dd+1, 0, 0, 0, 0, now.Location()) // todo a hora pode ser variável de ambiente
+	timeToExpire := tomorrow.Sub(now)
+	err := r.Client.Set(ctx, key, value, timeToExpire).Err() // expiração pode ser variável de ambiente
 	if err != nil {
 		return err
 	}
@@ -38,6 +42,14 @@ func (r *RedisCacheRepository) SaveAll(ctx context.Context, values map[string]st
 		if err != nil {
 			panic(err)
 		}
+	}
+	return nil
+}
+
+func (r *RedisCacheRepository) Delete(ctx context.Context, key string) error {
+	err := r.Client.Del(ctx, key).Err()
+	if err != nil {
+		return err
 	}
 	return nil
 }

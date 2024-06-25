@@ -3,15 +3,17 @@ package main
 import (
 	"context"
 	"database/sql"
+	"fmt"
 	"github.com/beriloqueiroz/desafio-dev-back/configs"
+	"github.com/beriloqueiroz/desafio-dev-back/internal/cache_sync_service/entity"
 	"github.com/beriloqueiroz/desafio-dev-back/internal/cache_sync_service/infra/implements"
 	"github.com/beriloqueiroz/desafio-dev-back/internal/cache_sync_service/usecase"
 	_ "github.com/lib/pq"
 	"github.com/redis/go-redis/v9"
+	"github.com/robfig/cron"
 	"log/slog"
 	"os"
 	"os/signal"
-	"time"
 )
 
 func main() {
@@ -45,21 +47,36 @@ func main() {
 		DB:       0,
 	})
 
+	// repositories e gateways
 	redisCacheRepository := implements.NewRedisCacheRepository(clientRedis)
-
-	// repositories
 	locationRepository := &implements.PostgresLocationRepository{
 		Db: db,
 	}
+	cptecMessageGateway := implements.NewCptecMessageGateway()
+
+	// usecases
+	getMessageUsecase := usecase.NewGetMsgsUseCase(redisCacheRepository, cptecMessageGateway)
+
+	if err != nil {
+		panic(err)
+	}
+	resMap, err := getMessageUsecase.Execute(context.Background(), []entity.Location{
+		{"São Paulo", "SP"},
+		{"Fortaleza", "CE"},
+		{"Quixadá", "CE"},
+	})
+	fmt.Println(resMap)
 
 	syncUseCase := usecase.NewSyncUseCase(locationRepository, redisCacheRepository)
 
-	go func() {
-		for {
-			syncUseCase.Execute()
-			time.Sleep(time.Hour * 12) // o 12 pode ser variável de ambiente
-		}
-	}()
+	c := cron.New()
+	err = c.AddFunc("0 0 0 * * *", func() { // todo a hora pode ser variável de ambiente, a mesma do timeToExpire
+		slog.Info("Starting sync cache")
+		syncUseCase.Execute(context.Background())
+	})
+	if err != nil {
+		panic(err)
+	}
 
 	// Wait for interruption.
 	select {

@@ -1,6 +1,9 @@
 package usecase
 
-import "github.com/beriloqueiroz/desafio-dev-back/internal/cache_sync_service/usecase/interfaces"
+import (
+	"context"
+	"github.com/beriloqueiroz/desafio-dev-back/internal/cache_sync_service/usecase/interfaces"
+)
 
 type SyncUseCase struct {
 	LocationRepository interfaces.LocationRepository
@@ -14,7 +17,7 @@ func NewSyncUseCase(locationRepository interfaces.LocationRepository, cacheRepos
 	}
 }
 
-func (u *SyncUseCase) Execute() {
+func (u *SyncUseCase) Execute(ctx context.Context) {
 	// captura locations
 	// captura mensagens
 	// popula cache

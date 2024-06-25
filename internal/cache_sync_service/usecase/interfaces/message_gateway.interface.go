@@ -1,5 +1,7 @@
 package interfaces
 
+import "context"
+
 type MessageGateway interface {
-	MessageByLocation(city string, state string) (*string, error)
+	MessageByLocation(ctx context.Context, city string, state string) (string, error)
 }
