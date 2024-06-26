@@ -47,7 +47,7 @@ func send(url string, reader *bytes.Reader) error {
 }
 
 func initCircuitBreak() {
-	cb = pkg.NewCircuitBreak("SEND POST WEB APP", 5, 0.5)
+	cb = pkg.NewCircuitBreak[[]byte]("SEND POST WEB APP", 5, 0.5)
 }
 
 var cb *gobreaker.CircuitBreaker[[]byte]

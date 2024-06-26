@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"github.com/beriloqueiroz/desafio-dev-back/internal/web_worker/infra/implements"
 	"github.com/beriloqueiroz/desafio-dev-back/pkg"
+	"github.com/sony/gobreaker/v2"
 	"golang.org/x/net/html/charset"
 	"net/http"
 	url2 "net/url"
@@ -17,6 +18,7 @@ import (
 type CptecMessageGateway struct{}
 
 func NewCptecMessageGateway() *CptecMessageGateway {
+	initCircuitBreak()
 	return &CptecMessageGateway{}
 }
 
@@ -113,7 +115,7 @@ func (c *CptecMessageGateway) MessageByLocation(ctx context.Context, city string
 }
 
 func GetCityWaveForecast(id int64) (PrevisaoOndas, error) {
-	resp, err := http.DefaultClient.Get(fmt.Sprintf("http://servicos.cptec.inpe.br/XML/cidade/%d/dia/0/ondas.xml", id))
+	resp, err := getWithCircuitBreaker(fmt.Sprintf("http://servicos.cptec.inpe.br/XML/cidade/%d/dia/0/ondas.xml", id))
 	if err != nil {
 		return PrevisaoOndas{}, err
 	}
@@ -130,7 +132,7 @@ func GetCityWaveForecast(id int64) (PrevisaoOndas, error) {
 }
 
 func GetCityClimate(id int64) (PrevisaoCidade, error) {
-	resp, err := http.DefaultClient.Get(fmt.Sprintf("http://servicos.cptec.inpe.br/XML/cidade/%d/previsao.xml", id))
+	resp, err := getWithCircuitBreaker(fmt.Sprintf("http://servicos.cptec.inpe.br/XML/cidade/%d/previsao.xml", id))
 	if err != nil {
 		return PrevisaoCidade{}, err
 	}
@@ -152,7 +154,7 @@ func GetCityID(city string, state string) (int64, error) {
 		return 0, err
 	}
 	url := "http://servicos.cptec.inpe.br/XML/listaCidades?city=" + url2.PathEscape(cityStr)
-	resp, err := http.DefaultClient.Get(url)
+	resp, err := getWithCircuitBreaker(url)
 	if err != nil {
 		return 0, err
 	}
@@ -176,4 +178,20 @@ func GetCityID(city string, state string) (int64, error) {
 		return 0, errors.New("city not found")
 	}
 	return cityId, nil
+}
+
+func initCircuitBreak() {
+	cb = pkg.NewCircuitBreak[*http.Response]("GET CPTEC DATA", 5, 0.5)
+}
+
+var cb *gobreaker.CircuitBreaker[*http.Response]
+
+func getWithCircuitBreaker(url string) (*http.Response, error) {
+	res, err := cb.Execute(func() (*http.Response, error) {
+		return http.DefaultClient.Get(url)
+	})
+	if err != nil {
+		return nil, err
+	}
+	return res, nil
 }
