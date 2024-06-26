@@ -73,6 +73,14 @@ func (cr *UserRoutes) InsertUserHandler(w http.ResponseWriter, r *http.Request) 
 	json.NewEncoder(w).Encode(output)
 }
 
+// @Summary Activate user
+// @Description Activate new user
+// @Tags user
+// @Accept  json
+// @Produce  json
+// @Param id path string true "user id (uuid)"
+// @Success 200 {object} output
+// @Router /user/{id}/activate [put]
 func (cr *UserRoutes) ActivateUserHandler(w http.ResponseWriter, r *http.Request) {
 	id := r.PathValue("id")
 	err := cr.ActivateUseCase.Execute(r.Context(), id)
@@ -92,6 +100,14 @@ func (cr *UserRoutes) ActivateUserHandler(w http.ResponseWriter, r *http.Request
 	json.NewEncoder(w).Encode(output)
 }
 
+// @Summary Deactivate user
+// @Description Deactivate new user
+// @Tags user
+// @Accept  json
+// @Produce  json
+// @Param id path string true "user id (uuid)"
+// @Success 200 {object} output
+// @Router /user/{id}/deactivate [put]
 func (cr *UserRoutes) DeactivateUserHandler(w http.ResponseWriter, r *http.Request) {
 	id := r.PathValue("id")
 	err := cr.DeactivateUseCase.Execute(r.Context(), id)

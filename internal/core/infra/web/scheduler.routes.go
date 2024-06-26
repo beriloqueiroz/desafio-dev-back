@@ -23,9 +23,17 @@ func NewSchedulerRoutes(
 }
 
 type createScheduleInputDto struct {
-	StartTime time.Time `json:"start_time"`
+	StartTime time.Time `json:"start_time" default:"2024-06-24T23:58:50-03:00"`
 }
 
+// @Summary Create new Scheduler
+// @Description Create new Scheduler
+// @Tags scheduler
+// @Accept  json
+// @Produce  json
+// @Param scheduler body createScheduleInputDto true "scheduler"
+// @Success 200 {object} output
+// @Router /schedule [post]
 func (rs *SchedulerRoutes) CreateScheduleNotificationHandler(w http.ResponseWriter, r *http.Request) {
 	var input createScheduleInputDto
 	err := json.NewDecoder(r.Body).Decode(&input)
@@ -54,6 +62,14 @@ func (rs *SchedulerRoutes) CreateScheduleNotificationHandler(w http.ResponseWrit
 	json.NewEncoder(w).Encode(output)
 }
 
+// @Summary Delete scheduler
+// @Description Delete scheduler
+// @Tags scheduler
+// @Accept  json
+// @Produce  json
+// @Param id path string true "scheduler id (uuid)"
+// @Success 200 {object} output
+// @Router /schedule/{id} [delete]
 func (rs *SchedulerRoutes) DeleteScheduleNotificationHandler(w http.ResponseWriter, r *http.Request) {
 	id := r.PathValue("id")
 	err := rs.DeleteScheduleNotificationUseCase.Execute(r.Context(), id)

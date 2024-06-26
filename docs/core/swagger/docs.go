@@ -9,12 +9,87 @@ const docTemplate = `{
     "info": {
         "description": "{{escape .Description}}",
         "title": "{{.Title}}",
-        "contact": {},
+        "termsOfService": "http://swagger.io/terms/",
+        "contact": {
+            "name": "API Support",
+            "url": "http://www.swagger.io/support",
+            "email": "berilo.queiroz@gmail.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
         "version": "{{.Version}}"
     },
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
+        "/schedule": {
+            "post": {
+                "description": "Create new Scheduler",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "scheduler"
+                ],
+                "summary": "Create new Scheduler",
+                "parameters": [
+                    {
+                        "description": "scheduler",
+                        "name": "scheduler",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/web.createScheduleInputDto"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/web.output"
+                        }
+                    }
+                }
+            }
+        },
+        "/schedule/{id}": {
+            "delete": {
+                "description": "Delete scheduler",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "scheduler"
+                ],
+                "summary": "Delete scheduler",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "scheduler id (uuid)",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/web.output"
+                        }
+                    }
+                }
+            }
+        },
         "/user": {
             "post": {
                 "description": "Insert new user",
@@ -31,12 +106,76 @@ const docTemplate = `{
                 "parameters": [
                     {
                         "description": "user",
-                        "name": "product",
+                        "name": "user",
                         "in": "body",
                         "required": true,
                         "schema": {
                             "$ref": "#/definitions/web.InsertUserInputDto"
                         }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/web.output"
+                        }
+                    }
+                }
+            }
+        },
+        "/user/{id}/activate": {
+            "put": {
+                "description": "Activate new user",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "user"
+                ],
+                "summary": "Activate user",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "user id (uuid)",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/web.output"
+                        }
+                    }
+                }
+            }
+        },
+        "/user/{id}/deactivate": {
+            "put": {
+                "description": "Deactivate new user",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "user"
+                ],
+                "summary": "Deactivate user",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "user id (uuid)",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
                     }
                 ],
                 "responses": {
@@ -68,6 +207,15 @@ const docTemplate = `{
                 }
             }
         },
+        "web.createScheduleInputDto": {
+            "type": "object",
+            "properties": {
+                "start_time": {
+                    "type": "string",
+                    "default": "2024-06-24T23:58:50-03:00"
+                }
+            }
+        },
         "web.output": {
             "type": "object",
             "properties": {
@@ -81,12 +229,12 @@ const docTemplate = `{
 
 // SwaggerInfo holds exported Swagger Info so clients can modify it
 var SwaggerInfo = &swag.Spec{
-	Version:          "",
-	Host:             "",
-	BasePath:         "",
+	Version:          "1.0",
+	Host:             "localhost:8080",
+	BasePath:         "/",
 	Schemes:          []string{},
-	Title:            "",
-	Description:      "",
+	Title:            "Swagger Desafio Meli API",
+	Description:      "This is a notification server .",
 	InfoInstanceName: "swagger",
 	SwaggerTemplate:  docTemplate,
 	LeftDelim:        "{{",
