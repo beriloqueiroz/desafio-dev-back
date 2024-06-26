@@ -15,6 +15,7 @@ func IsCoastalCities(city, state string) bool {
 	return false
 }
 
+// https://www.ibge.gov.br/geociencias/organizacao-do-territorio/estrutura-territorial/24072-municipios-defrontantes-com-o-mar.html
 func GetCoastalCities() []CidadeUF {
 	return []CidadeUF{
 		{
