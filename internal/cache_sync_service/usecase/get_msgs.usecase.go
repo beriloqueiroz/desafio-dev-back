@@ -25,7 +25,7 @@ func (u *GetMsgsUseCase) Execute(ctx context.Context, locations []entity.Locatio
 	for _, location := range locations {
 		res, err := u.CacheRepository.Find(ctx, location.String())
 		if err != nil {
-			slog.Error(err.Error())
+			slog.Warn(err.Error())
 			res, err = u.MessageGateway.MessageByLocation(ctx, location.City, location.State)
 			if err != nil {
 				slog.Error(err.Error())

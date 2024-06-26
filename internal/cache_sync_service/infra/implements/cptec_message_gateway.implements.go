@@ -82,8 +82,13 @@ type PrevisaoOndas struct {
 	} `xml:"noite"`
 }
 
+type Previsao struct {
+	Clima PrevisaoCidade
+	Ondas PrevisaoOndas
+}
+
 func (c *CptecMessageGateway) MessageByLocation(ctx context.Context, city string, state string) (string, error) {
-	result := map[string]string{}
+	var result Previsao
 	cityId, err := GetCityID(city, state)
 	if err != nil {
 		return "", err
@@ -92,13 +97,13 @@ func (c *CptecMessageGateway) MessageByLocation(ctx context.Context, city string
 	if err != nil {
 		return "", err
 	}
-	result["clima"] = climate
+	result.Clima = climate
 	if implements.IsCoastalCities(city, state) {
 		waves, err := GetCityWaveForecast(cityId)
 		if err != nil {
 			return "", err
 		}
-		result["ondas"] = waves
+		result.Ondas = waves
 	}
 	str, err := json.Marshal(result)
 	if err != nil {
@@ -107,46 +112,38 @@ func (c *CptecMessageGateway) MessageByLocation(ctx context.Context, city string
 	return string(str), err
 }
 
-func GetCityWaveForecast(id int64) (string, error) {
+func GetCityWaveForecast(id int64) (PrevisaoOndas, error) {
 	resp, err := http.DefaultClient.Get(fmt.Sprintf("http://servicos.cptec.inpe.br/XML/cidade/%d/dia/0/ondas.xml", id))
 	if err != nil {
-		return "", err
+		return PrevisaoOndas{}, err
 	}
 	defer resp.Body.Close()
-	var cidades PrevisaoOndas
+	var previsao PrevisaoOndas
 
 	decoder := xml.NewDecoder(resp.Body)
 	decoder.CharsetReader = charset.NewReaderLabel
-	err = decoder.Decode(&cidades)
+	err = decoder.Decode(&previsao)
 	if err != nil {
-		return "", err
+		return PrevisaoOndas{}, err
 	}
-	jsonStr, err := json.Marshal(cidades)
-	if err != nil {
-		return "", err
-	}
-	return string(jsonStr), nil
+	return previsao, nil
 }
 
-func GetCityClimate(id int64) (string, error) {
+func GetCityClimate(id int64) (PrevisaoCidade, error) {
 	resp, err := http.DefaultClient.Get(fmt.Sprintf("http://servicos.cptec.inpe.br/XML/cidade/%d/previsao.xml", id))
 	if err != nil {
-		return "", err
+		return PrevisaoCidade{}, err
 	}
 	defer resp.Body.Close()
-	var cidades PrevisaoCidade
+	var previsao PrevisaoCidade
 
 	decoder := xml.NewDecoder(resp.Body)
 	decoder.CharsetReader = charset.NewReaderLabel
-	err = decoder.Decode(&cidades)
+	err = decoder.Decode(&previsao)
 	if err != nil {
-		return "", err
+		return PrevisaoCidade{}, err
 	}
-	jsonStr, err := json.Marshal(cidades)
-	if err != nil {
-		return "", err
-	}
-	return string(jsonStr), nil
+	return previsao, nil
 }
 
 func GetCityID(city string, state string) (int64, error) {
@@ -155,7 +152,6 @@ func GetCityID(city string, state string) (int64, error) {
 		return 0, err
 	}
 	url := "http://servicos.cptec.inpe.br/XML/listaCidades?city=" + url2.PathEscape(cityStr)
-	fmt.Println(url)
 	resp, err := http.DefaultClient.Get(url)
 	if err != nil {
 		return 0, err
