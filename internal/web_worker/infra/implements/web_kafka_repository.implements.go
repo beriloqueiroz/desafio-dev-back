@@ -57,7 +57,7 @@ func (k *WebKafkaRepository) Read(ctx context.Context, ch chan []entity.Notifica
 				break
 			}
 			notifications = append(notifications, notification)
-			slog.Info(fmt.Sprintf("%% Message on %s:\n%s\n", e.TopicPartition, string(e.Value)))
+			//slog.Info(fmt.Sprintf("%% Message on %s:\n%s\n", e.TopicPartition, string(e.Value)))
 		case kafka.PartitionEOF:
 			msg := fmt.Sprintf("%% Reached %v\n", e)
 			slog.Info(msg)
@@ -65,7 +65,6 @@ func (k *WebKafkaRepository) Read(ctx context.Context, ch chan []entity.Notifica
 			return nil
 		case kafka.Error:
 			msg := fmt.Sprintf("%% Error: %v\n", e)
-			slog.Info(msg)
 			run = false
 			return errors.New(msg)
 		default:
@@ -73,9 +72,16 @@ func (k *WebKafkaRepository) Read(ctx context.Context, ch chan []entity.Notifica
 				ch <- notifications
 				notifications = notifications[:0]
 			}
-			//slog.Info(fmt.Sprintf("Ignored %v\n", e))
-			//return nil
 		}
+	}
+	return nil
+}
+
+func (k *WebKafkaRepository) Commit(ctx context.Context) error {
+	info, err := k.Consumer.Commit()
+	slog.Info(fmt.Sprintf("Commited Topic %s offset %s \n", *info[len(info)-1].Topic, info[len(info)-1].Offset.String()))
+	if err != nil {
+		return err
 	}
 	return nil
 }

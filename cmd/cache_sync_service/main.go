@@ -55,7 +55,7 @@ func main() {
 	syncUseCase := usecase.NewSyncUseCase(locationRepository, redisCacheRepository, messageGateway)
 
 	c := cron.New()
-	err = c.AddFunc("0 40 23 * * *", func() { // todo a hora pode ser variável de ambiente, a mesma do timeToExpire
+	err = c.AddFunc("0 0 0 * * *", func() { // todo a hora pode ser variável de ambiente, a mesma do timeToExpire
 		slog.Info("Starting sync cache")
 		syncUseCase.Execute(context.Background())
 		slog.Info("End sync cache")

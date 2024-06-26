@@ -27,6 +27,10 @@ func (u *SyncNotificationUseCase) Execute(ctx context.Context) error {
 			slog.Error(err.Error())
 			continue
 		}
+		err = u.NotificationQueues.Commit(ctx)
+		if err != nil {
+			slog.Error(err.Error())
+		}
 	}
 	return nil
 }

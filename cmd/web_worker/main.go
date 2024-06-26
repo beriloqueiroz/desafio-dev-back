@@ -32,9 +32,10 @@ func main() {
 	}
 
 	kafkaNotificationQueueConsumer, err := kafka.NewConsumer(&kafka.ConfigMap{
-		"bootstrap.servers": configs.KAFKAUrl,
-		"group.id":          "main",
-		"auto.offset.reset": "smallest"})
+		"bootstrap.servers":  configs.KAFKAUrl,
+		"group.id":           "main",
+		"enable.auto.commit": false,
+		"auto.offset.reset":  "smallest"})
 	if err != nil {
 		panic(err)
 	}

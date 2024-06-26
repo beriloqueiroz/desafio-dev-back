@@ -7,4 +7,5 @@ import (
 
 type NotificationQueueRepository interface {
 	Read(ctx context.Context, ch chan []entity.Notification) error
+	Commit(ctx context.Context) error
 }
