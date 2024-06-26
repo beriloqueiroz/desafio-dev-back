@@ -90,7 +90,7 @@ func main() {
 	}
 
 	// webserver and routes
-	port := ":8000"
+	port := ":8080"
 	webserver := web.NewWebServer(port)
 
 	userRoutes := web.NewUserRoutes(insertUserUseCase, activateUserRepository, deactivateUserRepository)

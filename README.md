@@ -4,11 +4,10 @@
 
 ![img.png](img.png)
 
-## todos
-- fazer retry no send queue
-- fazer readme
+## todo
 - swagger nas apis
-- fazer app simples html css js
+- fazer retry no send queue
+- fazer next app
 
 ## Introdução
 A solução tem como objetivo enviar mensagens com informações de previsão do tempo 
@@ -155,3 +154,6 @@ docker compose up -d
 
 Usar uma extensão do vscode Name: Thunder Client: https://marketplace.visualstudio.com/items?itemName=rangav.vscode-thunder-client, que é algo parecido com postman.
 Pode importar o arquivo: thunder-collection_desafio-dev-back.json
+
+- Swagger
+  - http://localhost:8080/swagger/

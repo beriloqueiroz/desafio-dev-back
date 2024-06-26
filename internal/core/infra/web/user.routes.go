@@ -36,6 +36,14 @@ type InsertUserOutputDto struct {
 	Message string `json:"message"`
 }
 
+// @Summary Insert new user
+// @Description Insert new user
+// @Tags user
+// @Accept  json
+// @Produce  json
+// @Param user body InsertUserInputDto true "user"
+// @Success 200 {object} output
+// @Router /user [post]
 func (cr *UserRoutes) InsertUserHandler(w http.ResponseWriter, r *http.Request) {
 	var input InsertUserInputDto
 	err := json.NewDecoder(r.Body).Decode(&input)

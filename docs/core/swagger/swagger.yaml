@@ -1,0 +1,43 @@
+definitions:
+  web.InsertUserInputDto:
+    properties:
+      city:
+        type: string
+      email:
+        type: string
+      phone:
+        type: string
+      state:
+        type: string
+    type: object
+  web.output:
+    properties:
+      message:
+        type: string
+    type: object
+info:
+  contact: {}
+paths:
+  /user:
+    post:
+      consumes:
+      - application/json
+      description: Insert new user
+      parameters:
+      - description: user
+        in: body
+        name: product
+        required: true
+        schema:
+          $ref: '#/definitions/web.InsertUserInputDto'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/web.output'
+      summary: Insert new user
+      tags:
+      - user
+swagger: "2.0"
