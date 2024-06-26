@@ -6,6 +6,7 @@ import (
 	"encoding/json"
 	"errors"
 	"github.com/beriloqueiroz/desafio-dev-back/internal/web_worker/entity"
+	"github.com/beriloqueiroz/desafio-dev-back/pkg"
 	"github.com/sony/gobreaker/v2"
 	"log/slog"
 	"net/http"
@@ -46,14 +47,7 @@ func send(url string, reader *bytes.Reader) error {
 }
 
 func initCircuitBreak() {
-	var st gobreaker.Settings
-	st.Name = "SEND POST WEB APP"
-	st.ReadyToTrip = func(counts gobreaker.Counts) bool {
-		failureRatio := float64(counts.TotalFailures) / float64(counts.Requests)
-		return counts.Requests >= 5 && failureRatio >= 0.5 // todo pode ser variável de ambiente
-	}
-
-	cb = gobreaker.NewCircuitBreaker[[]byte](st)
+	cb = pkg.NewCircuitBreak("SEND POST WEB APP", 5, 0.5)
 }
 
 var cb *gobreaker.CircuitBreaker[[]byte]
@@ -63,9 +57,6 @@ func sendWithCircuitBreaker(url string, reader *bytes.Reader) error {
 		return nil, send(url, reader)
 	})
 	if err != nil {
-		if cb.State().String() == "open" {
-			return errors.Join(err, errors.New("Circuit breaker is open"))
-		}
 		return err
 	}
 	return nil
