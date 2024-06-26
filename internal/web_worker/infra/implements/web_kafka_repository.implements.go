@@ -3,11 +3,12 @@ package implements
 import (
 	"context"
 	"encoding/json"
-	"errors"
 	"fmt"
 	"github.com/beriloqueiroz/desafio-dev-back/internal/web_worker/entity"
+	"github.com/beriloqueiroz/desafio-dev-back/internal/web_worker/usecase/interfaces"
 	"github.com/confluentinc/confluent-kafka-go/kafka"
 	"log/slog"
+	"time"
 )
 
 type WebKafkaRepository struct {
@@ -38,15 +39,11 @@ func NewWebKafkaRepository(consumer *kafka.Consumer, topic string) *WebKafkaRepo
 	}
 }
 
-func (k *WebKafkaRepository) Read(ctx context.Context, ch chan []entity.Notification) error {
+func (k *WebKafkaRepository) Read(ctx context.Context, action interfaces.Action) error {
 	run := true
-	err := k.Consumer.SubscribeTopics([]string{k.Topic}, nil)
-	if err != nil {
-		return err
-	}
-	defer k.Consumer.Close()
+	//defer k.Consumer.Close()
 	var notifications []entity.Notification
-	for run == true {
+	for run {
 		ev := k.Consumer.Poll(100)
 		switch e := ev.(type) {
 		case *kafka.Message:
@@ -57,31 +54,28 @@ func (k *WebKafkaRepository) Read(ctx context.Context, ch chan []entity.Notifica
 				break
 			}
 			notifications = append(notifications, notification)
-			//slog.Info(fmt.Sprintf("%% Message on %s:\n%s\n", e.TopicPartition, string(e.Value)))
 		case kafka.PartitionEOF:
 			msg := fmt.Sprintf("%% Reached %v\n", e)
 			slog.Info(msg)
-			run = false
-			return nil
 		case kafka.Error:
-			msg := fmt.Sprintf("%% Error: %v\n", e)
 			run = false
-			return errors.New(msg)
 		default:
 			if len(notifications) > 0 {
-				ch <- notifications
+				err := action(ctx, notifications)
+				if err != nil {
+					slog.Error(err.Error())
+					time.Sleep(time.Second)
+					continue
+				}
+				_, err = k.Consumer.Commit()
+				if err != nil {
+					slog.Error(err.Error())
+					continue
+				}
+				slog.Info("Send ok")
 				notifications = notifications[:0]
 			}
 		}
-	}
-	return nil
-}
-
-func (k *WebKafkaRepository) Commit(ctx context.Context) error {
-	info, err := k.Consumer.Commit()
-	slog.Info(fmt.Sprintf("Commited Topic %s offset %s \n", *info[len(info)-1].Topic, info[len(info)-1].Offset.String()))
-	if err != nil {
-		return err
 	}
 	return nil
 }

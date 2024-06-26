@@ -5,7 +5,8 @@ import (
 	"github.com/beriloqueiroz/desafio-dev-back/internal/web_worker/entity"
 )
 
+type Action func(ctx context.Context, notifications []entity.Notification) error
+
 type NotificationQueueRepository interface {
-	Read(ctx context.Context, ch chan []entity.Notification) error
-	Commit(ctx context.Context) error
+	Read(ctx context.Context, action Action) error
 }

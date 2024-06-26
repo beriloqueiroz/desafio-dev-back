@@ -39,11 +39,11 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
+	defer kafkaNotificationQueueConsumer.Close()
 	err = kafkaNotificationQueueConsumer.SubscribeTopics([]string{configs.KAFKATopic}, nil)
 	if err != nil {
 		panic(err)
 	}
-	defer kafkaNotificationQueueConsumer.Close()
 
 	// repositories
 	webKafkaRepository := implements.NewWebKafkaRepository(kafkaNotificationQueueConsumer, configs.KAFKATopic)
@@ -57,13 +57,14 @@ func main() {
 
 	// jobs
 	go func() {
-		slog.Info("Starting sync notifications")
-		err := syncNotificationUseCase.Execute(context.Background())
-		if err != nil {
-			slog.Error(err.Error())
+		for {
+			slog.Info("Starting sync notifications")
+			err := syncNotificationUseCase.Execute(context.Background())
+			if err != nil {
+				slog.Error(err.Error())
+			}
+			time.Sleep(time.Second * 10)
 		}
-		time.Sleep(time.Second)
-
 	}()
 
 	// Wait for interruption.

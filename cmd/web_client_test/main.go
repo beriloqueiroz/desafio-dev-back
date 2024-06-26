@@ -46,8 +46,8 @@ func main() {
 		for i, in := range input {
 			fmt.Println("Input:", i, in.Message)
 		}
-		//w.WriteHeader(http.StatusOK)
-		w.WriteHeader(http.StatusBadRequest) //test circuit break
+		w.WriteHeader(http.StatusOK)
+		//w.WriteHeader(http.StatusBadRequest) //test circuit break
 		json.NewEncoder(w).Encode(input)
 	})
 
