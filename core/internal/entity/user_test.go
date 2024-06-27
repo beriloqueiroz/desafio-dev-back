@@ -1,13 +1,14 @@
 package entity
 
 import (
+	cacheentity "github.com/beriloqueiroz/desafio-dev-back/cache_sync_service/pkg/entity"
 	"github.com/google/uuid"
 	"github.com/stretchr/testify/assert"
 	"testing"
 )
 
 func TestNewUser(t *testing.T) {
-	user, err := NewUser(uuid.NewString(), true, "test@test.com.br", "11888888888", Location{
+	user, err := NewUser(uuid.NewString(), true, "test@test.com.br", "11888888888", cacheentity.Location{
 		City:  "Fortaleza",
 		State: "CE",
 	})
@@ -17,7 +18,7 @@ func TestNewUser(t *testing.T) {
 }
 
 func TestUser_Activate(t *testing.T) {
-	user, _ := NewUser(uuid.NewString(), false, "test@test.com.br", "11888888888", Location{
+	user, _ := NewUser(uuid.NewString(), false, "test@test.com.br", "11888888888", cacheentity.Location{
 		City:  "Fortaleza",
 		State: "CE",
 	})
@@ -26,7 +27,7 @@ func TestUser_Activate(t *testing.T) {
 }
 
 func TestUser_Deactivate(t *testing.T) {
-	user, _ := NewUser(uuid.NewString(), true, "test@test.com.br", "11888888888", Location{
+	user, _ := NewUser(uuid.NewString(), true, "test@test.com.br", "11888888888", cacheentity.Location{
 		City:  "Fortaleza",
 		State: "CE",
 	})
@@ -35,7 +36,7 @@ func TestUser_Deactivate(t *testing.T) {
 }
 
 func TestUser_IsActive(t *testing.T) {
-	user, _ := NewUser(uuid.NewString(), true, "test@test.com.br", "11888888888", Location{
+	user, _ := NewUser(uuid.NewString(), true, "test@test.com.br", "11888888888", cacheentity.Location{
 		City:  "Fortaleza",
 		State: "CE",
 	})
@@ -43,7 +44,7 @@ func TestUser_IsActive(t *testing.T) {
 }
 
 func TestUser_InvalidID(t *testing.T) {
-	user, err := NewUser("123", true, "test@test.com.br", "11888888888", Location{
+	user, err := NewUser("123", true, "test@test.com.br", "11888888888", cacheentity.Location{
 		City:  "Fortaleza",
 		State: "CE",
 	})
@@ -53,7 +54,7 @@ func TestUser_InvalidID(t *testing.T) {
 }
 
 func TestUser_InvalidEmail(t *testing.T) {
-	user, err := NewUser(uuid.NewString(), true, "", "11888888888", Location{
+	user, err := NewUser(uuid.NewString(), true, "", "11888888888", cacheentity.Location{
 		City:  "Fortaleza",
 		State: "CE",
 	})
@@ -63,7 +64,7 @@ func TestUser_InvalidEmail(t *testing.T) {
 }
 
 func TestUser_InvalidPhone(t *testing.T) {
-	user, err := NewUser(uuid.NewString(), true, "test@test.com.br", "", Location{
+	user, err := NewUser(uuid.NewString(), true, "test@test.com.br", "", cacheentity.Location{
 		City:  "Fortaleza",
 		State: "CE",
 	})
@@ -73,7 +74,7 @@ func TestUser_InvalidPhone(t *testing.T) {
 }
 
 func TestUser_InvalidPhoneAndEmail(t *testing.T) {
-	user, err := NewUser(uuid.NewString(), true, "", "", Location{
+	user, err := NewUser(uuid.NewString(), true, "", "", cacheentity.Location{
 		City:  "Fortaleza",
 		State: "CE",
 	})
@@ -83,7 +84,7 @@ func TestUser_InvalidPhoneAndEmail(t *testing.T) {
 }
 
 func TestUser_InvalidState(t *testing.T) {
-	user, err := NewUser(uuid.NewString(), true, "test@test.com.br", "85989898989", Location{
+	user, err := NewUser(uuid.NewString(), true, "test@test.com.br", "85989898989", cacheentity.Location{
 		City:  "Fortaleza",
 		State: "Ceará",
 	})
@@ -93,7 +94,7 @@ func TestUser_InvalidState(t *testing.T) {
 }
 
 func TestUser_InvalidCity(t *testing.T) {
-	user, err := NewUser(uuid.NewString(), true, "test@test.com.br", "85989898989", Location{
+	user, err := NewUser(uuid.NewString(), true, "test@test.com.br", "85989898989", cacheentity.Location{
 		City:  "",
 		State: "CE",
 	})

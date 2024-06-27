@@ -2,31 +2,22 @@ package entity
 
 import (
 	"errors"
-	"fmt"
+	cacheentity "github.com/beriloqueiroz/desafio-dev-back/cache_sync_service/pkg/entity"
 	"github.com/google/uuid"
 	"strings"
 	"time"
 )
-
-type Location struct {
-	City  string
-	State string
-}
-
-func (l Location) String() string {
-	return fmt.Sprintf("%s - %s", l.City, l.State)
-}
 
 type User struct {
 	ID         string
 	Active     bool
 	Email      string
 	Phone      string
-	Location   Location
+	Location   cacheentity.Location
 	CreateTime time.Time
 }
 
-func NewUser(id string, active bool, email string, phone string, location Location) (*User, error) {
+func NewUser(id string, active bool, email string, phone string, location cacheentity.Location) (*User, error) {
 	user := &User{
 		ID:         id,
 		Phone:      phone,

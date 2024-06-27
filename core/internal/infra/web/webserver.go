@@ -1,7 +1,7 @@
 package web
 
 import (
-	_ "github.com/beriloqueiroz/desafio-dev-back/docs/core/swagger"
+	_ "github.com/beriloqueiroz/desafio-dev-back/core/docs/swagger"
 	httpSwagger "github.com/swaggo/http-swagger"
 	"net/http"
 )
