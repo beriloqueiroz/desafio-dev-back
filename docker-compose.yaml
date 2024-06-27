@@ -4,7 +4,7 @@ services:
   core:
     build:
       context: .
-      dockerfile: "core.Dockerfile"
+      dockerfile: "core/Dockerfile"
     ports:
       - "8080:8080"
     depends_on:
@@ -14,14 +14,14 @@ services:
   web_worker:
     build:
       context: .
-      dockerfile: "web_worker.Dockerfile"
+      dockerfile: "web_worker/Dockerfile"
     depends_on:
       - kafka
 
   cache_sync:
     build:
       context: .
-      dockerfile: "cache_sync.Dockerfile"
+      dockerfile: "cache_sync_service/Dockerfile"
     depends_on:
       - mgmt_db
       - redis
