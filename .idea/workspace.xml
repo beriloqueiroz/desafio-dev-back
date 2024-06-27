@@ -5,14 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a70dfc59-e7df-4d5f-a569-2fd284a0f00e" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cache_sync/cache_sync.Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/cache_sync/cache_sync.Dockerfile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cache_sync/internal/infra/implements/cptec_message_gateway.implements.go" beforeDir="false" afterPath="$PROJECT_DIR$/cache_sync/internal/infra/implements/cptec_message_gateway.implements.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cache_sync/internal/usecase/get_msgs.usecase.go" beforeDir="false" afterPath="$PROJECT_DIR$/cache_sync/internal/usecase/get_msgs.usecase.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core.Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/core.Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/cmd/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/core/cmd/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/internal/usecase/sync_schedules_notification.usecase.go" beforeDir="false" afterPath="$PROJECT_DIR$/core/internal/usecase/sync_schedules_notification.usecase.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web_client_test/web_client_test.Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/web_client_test/web_client_test.Dockerfile" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
