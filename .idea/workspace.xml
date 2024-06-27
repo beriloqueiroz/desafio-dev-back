@@ -5,15 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a70dfc59-e7df-4d5f-a569-2fd284a0f00e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/web_client_test.Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cache_sync.Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/cache_sync.Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core.Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/core.Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web_worker.Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/web_worker.Dockerfile" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -44,8 +36,12 @@
   "keyToString": {
     "ASKED_ADD_EXTERNAL_FILES": "true",
     "Docker.cache_sync.Dockerfile.executor": "Run",
+    "Docker.docker-compose.yaml.adminer: Compose Deployment.executor": "Run",
+    "Docker.docker-compose.yaml.cache_sync: Compose Deployment.executor": "Run",
     "Docker.docker-compose.yaml.core: Compose Deployment.executor": "Run",
+    "Docker.docker-compose.yaml.kafka: Compose Deployment.executor": "Run",
     "Docker.docker-compose.yaml.mgmt_db: Compose Deployment.executor": "Run",
+    "Docker.docker-compose.yaml.migrate: Compose Deployment.executor": "Run",
     "Docker.docker-compose.yaml.web_client_test: Compose Deployment.executor": "Run",
     "Docker.docker-compose.yaml.web_worker: Compose Deployment.executor": "Run",
     "Docker.docker-compose.yaml: Compose Deployment.executor": "Run",
@@ -60,7 +56,7 @@
     "git-widget-placeholder": "main",
     "go.import.settings.migrated": "true",
     "go.sdk.automatically.set": "true",
-    "last_opened_file_path": "/home/berilo/dev/desafio-dev-back",
+    "last_opened_file_path": "/home/berilo/dev/desafio-dev-back/internal/cache_sync_service/infra/implements",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.standard": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -71,10 +67,12 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/internal/cache_sync_service/infra/implements" />
+      <recent name="$PROJECT_DIR$/cmd/web_worker" />
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
-  <component name="RunManager" selected="Docker.web_worker.Dockerfile">
+  <component name="RunManager" selected="Docker.docker-compose.yaml.web_worker: Compose Deployment">
     <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
       <deployment type="docker-compose.yml">
         <settings />
@@ -82,14 +80,8 @@
       <method v="2" />
     </configuration>
     <configuration default="true" type="docker-deploy" factoryName="dockerfile" temporary="true">
-      <deployment type="dockerfile" />
-      <method v="2" />
-    </configuration>
-    <configuration name="cache_sync.Dockerfile" type="docker-deploy" factoryName="dockerfile" temporary="true" server-name="Docker">
       <deployment type="dockerfile">
-        <settings>
-          <option name="sourceFilePath" value="cache_sync.Dockerfile" />
-        </settings>
+        <settings />
       </deployment>
       <method v="2" />
     </configuration>
@@ -101,12 +93,12 @@
       </deployment>
       <method v="2" />
     </configuration>
-    <configuration name="docker-compose.yaml.core: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+    <configuration name="docker-compose.yaml.adminer: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
       <deployment type="docker-compose.yml">
         <settings>
           <option name="services">
             <list>
-              <option value="core" />
+              <option value="adminer" />
             </list>
           </option>
           <option name="sourceFilePath" value="docker-compose.yaml" />
@@ -114,12 +106,12 @@
       </deployment>
       <method v="2" />
     </configuration>
-    <configuration name="docker-compose.yaml.web_client_test: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+    <configuration name="docker-compose.yaml.cache_sync: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
       <deployment type="docker-compose.yml">
         <settings>
           <option name="services">
             <list>
-              <option value="web_client_test" />
+              <option value="cache_sync" />
             </list>
           </option>
           <option name="sourceFilePath" value="docker-compose.yaml" />
@@ -127,21 +119,39 @@
       </deployment>
       <method v="2" />
     </configuration>
-    <configuration name="web_worker.Dockerfile" type="docker-deploy" factoryName="dockerfile" temporary="true" server-name="Docker">
-      <deployment type="dockerfile">
+    <configuration name="docker-compose.yaml.kafka: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
         <settings>
-          <option name="sourceFilePath" value="web_worker.Dockerfile" />
+          <option name="services">
+            <list>
+              <option value="kafka" />
+            </list>
+          </option>
+          <option name="sourceFilePath" value="docker-compose.yaml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration name="docker-compose.yaml.web_worker: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="services">
+            <list>
+              <option value="web_worker" />
+            </list>
+          </option>
+          <option name="sourceFilePath" value="docker-compose.yaml" />
         </settings>
       </deployment>
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Docker.web_worker.Dockerfile" />
-        <item itemvalue="Docker.cache_sync.Dockerfile" />
-        <item itemvalue="Docker.docker-compose.yaml.web_client_test: Compose Deployment" />
-        <item itemvalue="Docker.docker-compose.yaml.core: Compose Deployment" />
+        <item itemvalue="Docker.docker-compose.yaml.web_worker: Compose Deployment" />
+        <item itemvalue="Docker.docker-compose.yaml.kafka: Compose Deployment" />
         <item itemvalue="Docker.docker-compose.yaml: Compose Deployment" />
+        <item itemvalue="Docker.docker-compose.yaml.adminer: Compose Deployment" />
+        <item itemvalue="Docker.docker-compose.yaml.cache_sync: Compose Deployment" />
       </list>
     </recent_temporary>
   </component>

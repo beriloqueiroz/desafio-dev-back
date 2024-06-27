@@ -6,7 +6,6 @@ import (
 	"encoding/xml"
 	"errors"
 	"fmt"
-	"github.com/beriloqueiroz/desafio-dev-back/internal/web_worker/infra/implements"
 	"github.com/beriloqueiroz/desafio-dev-back/pkg"
 	"github.com/sony/gobreaker/v2"
 	"golang.org/x/net/html/charset"
@@ -100,7 +99,7 @@ func (c *CptecMessageGateway) MessageByLocation(ctx context.Context, city string
 		return "", err
 	}
 	result.Clima = climate
-	if implements.IsCoastalCities(city, state) {
+	if IsCoastalCities(city, state) {
 		waves, err := GetCityWaveForecast(cityId)
 		if err != nil {
 			return "", err

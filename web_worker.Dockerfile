@@ -4,7 +4,7 @@ WORKDIR /app
 
 COPY . .
 
-RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -ldflags="-s -w" -a -o /handle ./cmd/web_worker/main.go
+RUN GOOS=linux GOARCH=amd64 go build -ldflags="-s -w" -a -o /handle ./cmd/web_worker/main.go
 
 # FROM scratch
 
