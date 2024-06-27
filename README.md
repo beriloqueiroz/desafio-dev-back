@@ -5,10 +5,9 @@
 ![img.png](docs/img.png)
 
 ## todo
-- validação para evitar cadastro de schedules no mesmo dia/horário
-- subir no dockerhub
+- subir imagens no dockerhub
 - fazer retry no send queue
-- fazer next app
+- fazer nextjs app para ilustras mensagem e substituir web_client_test
 
 ## Introdução
 A solução tem como objetivo enviar mensagens com informações de previsão do tempo 

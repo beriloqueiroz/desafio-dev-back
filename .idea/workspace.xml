@@ -7,9 +7,6 @@
     <list default="true" id="a70dfc59-e7df-4d5f-a569-2fd284a0f00e" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/internal/infra/implements/postgres_schedule_repository.go" beforeDir="false" afterPath="$PROJECT_DIR$/core/internal/infra/implements/postgres_schedule_repository.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/internal/usecase/create_schedule_notification.usecase.go" beforeDir="false" afterPath="$PROJECT_DIR$/core/internal/usecase/create_schedule_notification.usecase.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/internal/usecase/interfaces/schedule_notification_repository.interface.go" beforeDir="false" afterPath="$PROJECT_DIR$/core/internal/usecase/interfaces/schedule_notification_repository.interface.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
