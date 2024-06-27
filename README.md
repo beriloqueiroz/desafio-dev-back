@@ -5,6 +5,7 @@
 ![img.png](docs/img.png)
 
 ## todo
+- validação para evitar cadastro de schedules no mesmo dia/horário
 - otimizar imagens docker
 - subir no dockerhub
 - fazer retry no send queue
@@ -156,7 +157,9 @@ O conteúdo da pasta implements são as implementações das interfaces em decla
 - notification_web_worker: API REST [WEBSERVER - POST]
 - web: web app test 
   - para ver as mensagens chegando em uma "aplicação web" ver-se no log do container web_client_test
-
+  ```bash
+    docker logs -f desafio-dev-back-web_client_test-1
+  ```
 ## Testando
 
 - rodando
@@ -176,3 +179,8 @@ Pode importar o arquivo: thunder-collection_desafio-dev-back.json
 
 - Swagger
   - http://localhost:8080/swagger/
+
+- sugestão do cenário feliz de teste
+  1. cadastra 5 usuários
+  2. cadastra 1 schedule para daqui a 2 minutos
+  3. quando o tempo de 2 minutos passar as mensagens das respectivas cidades/usuários devem aparecer no log do container web_client_test
