@@ -5,7 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a70dfc59-e7df-4d5f-a569-2fd284a0f00e" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/cache_sync/internal/infra/implements/cptec_message_gateway.implements.go" beforeDir="false" afterPath="$PROJECT_DIR$/cache_sync/internal/infra/implements/cptec_message_gateway.implements.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

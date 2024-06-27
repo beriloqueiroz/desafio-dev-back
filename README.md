@@ -5,7 +5,6 @@
 ![img.png](docs/img.png)
 
 ## todo
-- ajustar o readme estrutura de pastas
 - otimizar imagens docker
 - subir no dockerhub
 - fazer retry no send queue
@@ -53,31 +52,40 @@ Ler da web_queue constantemente e envia as notificações para o app conforme lo
 ## estrutua e organização
 
 Decidiu-se utilizar alguns conceitos de clean architecture e domínios ricos. 
-Os módulos estão contidos na pasta internal, e seus entrypoints na pasta cmd, uma outra possibilidade seria tornar esses módulos em projetos isolados.
+Os módulos estão contidos na raiz, cache_sync, web_worker e core
 - Dentro de cada módulo há:
-  - entity
-    - contém as regras de négocio, representa o domínio.
-  - infra
-    - contém as implementações e integrações com meio externo, banco de dados, api e etc.
-  - usecase
-    - representa intensão do usuário, o usuário pode ser outro módulo ou sistema.
+  - internal (com implementações específicas da solução do módulo)
+    - entity
+      - contém as regras de négocio, representa o domínio.
+    - infra
+      - contém as implementações e integrações com meio externo, banco de dados, api e etc.
+    - usecase
+      - representa intensão do usuário, o usuário pode ser outro módulo ou sistema.
+  - pkg (pacotes que podem ser compartilhados)
+  - cmd (contém o entrypoint do módulo)
+  - configs (contém a configuração das variáveis de ambiente)
+  - docs (opcional - contém alguma documentação tal como arquivos do swagger, test de carga e etc.)
+- Acoplamentos
+  - No geral os módulos estão desacoplados, funcionando como serviços separados, embora o módulo de core possua uma dependencia a ser versionada com o módulo de cache, o que poderia se tornar uma comunicação http no futuro.
 ### pastas
 ```tree
-├── cmd
-│   ├── cache_sync_service
-│   │   └── factories
-│   ├── core
-│   ├── web_client_test
-│   └── web_worker
-├── configs
-├── internal
-│   ├── cache_sync_service
+├── cache_sync
+│   ├── cmd
+│   ├── configs
+│   ├── internal
 │   │   ├── entity
 │   │   ├── infra
 │   │   │   └── implements
 │   │   └── usecase
 │   │       └── interfaces
-│   ├── core
+│   └── pkg
+│       └── factories
+├── core
+│   ├── cmd
+│   ├── configs
+│   ├── docs
+│   │   └── swagger
+│   ├── internal
 │   │   ├── entity
 │   │   ├── infra
 │   │   │   ├── database
@@ -86,47 +94,50 @@ Os módulos estão contidos na pasta internal, e seus entrypoints na pasta cmd, 
 │   │   │   └── web
 │   │   └── usecase
 │   │       └── interfaces
-│   └── web_worker
-│       ├── entity
-│       ├── infra
-│       │   └── implements
-│       └── usecase
-│           └── interfaces
-└── pkg
-
-```
-
-### entrypoints
-```tree
-./cmd
-├── cache_sync_service
-│   ├── factories
-│   │   └── factories.go
-│   └── main.go
-├── core
-│   └── main.go
+│   └── pkg
+├── docs
+├── web_client_test
+│   └── cmd
 └── web_worker
-    └── main.go
+    ├── cmd
+    ├── configs
+    ├── internal
+    │   ├── entity
+    │   ├── infra
+    │   │   └── implements
+    │   └── usecase
+    │       └── interfaces
+    └── pkg
+
 ```
 
 ### exemplo de módulo
 ```tree
-./internal/web_worker
-├── entity
-│   └── notification.go
-├── infra
-│   └── implements
-│       ├── coastal_cities.go
-│       ├── web_kafka_repository.implements.go
-│       └── web_rest_service.implements.go
-└── usecase
-    ├── interfaces
-    │   ├── notification_queue_repository.interface.go
-    │   └── web_service.interface.go
-    └── sync_notifications.usecase.go
+├── cmd
+│   └── main.go
+├── configs
+│   └── config.go
+├── dev.env
+├── go.mod
+├── go.sum
+├── internal
+│   ├── entity
+│   │   └── notification.go
+│   ├── infra
+│   │   └── implements
+│   │       ├── web_kafka_repository.implements.go
+│   │       └── web_rest_service.implements.go
+│   └── usecase
+│       ├── interfaces
+│       │   ├── notification_queue_repository.interface.go
+│       │   └── web_service.interface.go
+│       └── sync_notifications.usecase.go
+├── pkg
+│   └── circuit_break.go
+└── web_worker.Dockerfile
 
 ```
-O conteúdo da pasta implements são as implementações das interfaces em /usecase/interfaces.
+O conteúdo da pasta implements são as implementações das interfaces em declaradas na pasta usecase.
 
 ## Resiliência e Escalabilidade
 
@@ -144,7 +155,7 @@ O conteúdo da pasta implements são as implementações das interfaces em /usec
 - mgmt: postgres
 - notification_web_worker: API REST [WEBSERVER - POST]
 - web: web app test 
-  - [//]: # (  - todo)
+  - para ver as mensagens chegando em uma "aplicação web" ver-se no log do container web_client_test
 
 ## Testando
 
