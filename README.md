@@ -2,9 +2,12 @@
 
 ## Desenho da solução
 
-![img.png](img.png)
+![img.png](docs/img.png)
 
 ## todo
+- ajustar o readme estrutura de pastas
+- otimizar imagens docker
+- subir no dockerhub
 - fazer retry no send queue
 - fazer next app
 
