@@ -6,7 +6,6 @@
 
 ## todo
 - validação para evitar cadastro de schedules no mesmo dia/horário
-- otimizar imagens docker
 - subir no dockerhub
 - fazer retry no send queue
 - fazer next app

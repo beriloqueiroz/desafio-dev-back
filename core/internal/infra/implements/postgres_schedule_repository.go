@@ -63,3 +63,16 @@ func (p *PostgresScheduleRepository) FindFirstPendingBeforeDate(ctx context.Cont
 	}
 	return entity.NewScheduleNotification(s.ID, s.StartTime, entity.Status(s.Status))
 }
+
+func (p *PostgresScheduleRepository) HasWithDate(ctx context.Context, date time.Time) (bool, error) {
+	var s Schedule
+	err := p.Db.QueryRowContext(ctx, "SELECT id, start_time, status FROM schedules WHERE start_time = $1",
+		date.Format("2006-01-02T15:04:05")).Scan(&s.ID, &s.StartTime, &s.Status)
+	if errors.Is(err, sql.ErrNoRows) {
+		return false, nil
+	}
+	if err != nil {
+		return false, err
+	}
+	return true, nil
+}
