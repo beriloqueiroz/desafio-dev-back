@@ -1,6 +1,11 @@
 
 version: '3.9'
 services:
+  web_client_test:
+    build:
+      context: .
+      dockerfile: "web_client_test.Dockerfile"
+
   core:
     build:
       context: .

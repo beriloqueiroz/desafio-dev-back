@@ -152,7 +152,9 @@ docker compose up -d
 em caso de problemas de permissão ao criar o volumes usar:
 ```bash
 sudo chmod -R g+rwX ./.docker/kafka
+sudo chown -R $(id -u):$(id -g) ./.docker/mgmt_db
 ```
+
 - gestão de usuário e agendamento
 
 Usar uma extensão do vscode Name: Thunder Client: https://marketplace.visualstudio.com/items?itemName=rangav.vscode-thunder-client, que é algo parecido com postman.
