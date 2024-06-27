@@ -30,6 +30,7 @@ func (ws *WebRestService) Send(ctx context.Context, notifications []entity.Notif
 	}
 
 	reader := bytes.NewReader(bodyBytes)
+
 	return sendWithCircuitBreaker(ws.Url, reader)
 }
 
