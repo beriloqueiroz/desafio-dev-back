@@ -5,7 +5,7 @@ import (
 	"context"
 	"encoding/json"
 	"errors"
-	"github.com/beriloqueiroz/desafio-dev-back/pkg"
+	"github.com/beriloqueiroz/desafio-dev-back/core/pkg"
 	"github.com/beriloqueiroz/desafio-dev-back/web_worker/internal/entity"
 	"github.com/sony/gobreaker/v2"
 	"log/slog"

@@ -3,11 +3,11 @@ package main
 import (
 	"context"
 	"database/sql"
+	"github.com/beriloqueiroz/desafio-dev-back/cache_sync_service/configs"
 	implements2 "github.com/beriloqueiroz/desafio-dev-back/cache_sync_service/internal/infra/implements"
 	"github.com/beriloqueiroz/desafio-dev-back/cache_sync_service/internal/usecase"
-	"github.com/beriloqueiroz/desafio-dev-back/configs"
 	_ "github.com/lib/pq"
-	"github.com/redis/go-redis/v9"
+	redis "github.com/redis/go-redis/v9"
 	"github.com/robfig/cron"
 	"log/slog"
 	"os"

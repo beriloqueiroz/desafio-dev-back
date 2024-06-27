@@ -4,7 +4,7 @@ import (
 	"context"
 	"database/sql"
 	"github.com/beriloqueiroz/desafio-dev-back/cache_sync_service/cmd/factories"
-	"github.com/beriloqueiroz/desafio-dev-back/configs"
+	"github.com/beriloqueiroz/desafio-dev-back/core/configs"
 	"github.com/beriloqueiroz/desafio-dev-back/core/internal/infra/implements"
 	"github.com/beriloqueiroz/desafio-dev-back/core/internal/infra/web"
 	"github.com/beriloqueiroz/desafio-dev-back/core/internal/usecase"

@@ -1,9 +1,9 @@
 package factories
 
 import (
+	"github.com/beriloqueiroz/desafio-dev-back/cache_sync_service/configs"
 	implements2 "github.com/beriloqueiroz/desafio-dev-back/cache_sync_service/internal/infra/implements"
 	"github.com/beriloqueiroz/desafio-dev-back/cache_sync_service/internal/usecase"
-	"github.com/beriloqueiroz/desafio-dev-back/configs"
 	"github.com/redis/go-redis/v9"
 )
 

@@ -3,10 +3,10 @@ package configs
 import "github.com/spf13/viper"
 
 type conf struct {
-	DBDriver   string `mapstructure:"DB_DRIVER"`
-	DBUri      string `mapstructure:"DB_URI"`
-	KAFKAUrl   string `mapstructure:"KAFKA_URL"`
-	KAFKATopic string `mapstructure:"KAFKA_TOPIC"`
+	DBDriver  string `mapstructure:"DB_DRIVER"`
+	DBUri     string `mapstructure:"DB_URI"`
+	CacheUri  string `mapstructure:"CACHE_URI"`
+	CachePass string `mapstructure:"CACHE_PASS"`
 }
 
 func LoadConfig(paths []string) (*conf, error) {

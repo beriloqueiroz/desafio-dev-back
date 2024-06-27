@@ -3,14 +3,15 @@ package implements
 import (
 	"context"
 	cacheentity "github.com/beriloqueiroz/desafio-dev-back/cache_sync_service/internal/entity"
-	"github.com/beriloqueiroz/desafio-dev-back/internal/core/entity"
+	cacheusecase "github.com/beriloqueiroz/desafio-dev-back/cache_sync_service/internal/usecase"
+	"github.com/beriloqueiroz/desafio-dev-back/core/internal/entity"
 )
 
 type CacheSyncService struct {
-	MessageCacheUseCase *usecase.GetMsgsUseCase
+	MessageCacheUseCase *cacheusecase.GetMsgsUseCase
 }
 
-func NewCacheSyncService(messageCacheUseCase *usecase.GetMsgsUseCase) *CacheSyncService {
+func NewCacheSyncService(messageCacheUseCase *cacheusecase.GetMsgsUseCase) *CacheSyncService {
 	return &CacheSyncService{
 		MessageCacheUseCase: messageCacheUseCase,
 	}
