@@ -4,6 +4,7 @@ import (
 	"cache_sync/internal/entity"
 	"cache_sync/internal/usecase/interfaces"
 	"context"
+	"errors"
 	"log/slog"
 )
 
@@ -31,6 +32,10 @@ func (u *GetMsgsUseCase) Execute(ctx context.Context, locations []entity.Locatio
 				slog.Error(err.Error())
 				continue
 			}
+			if len(res) <= 10 {
+				slog.Warn("Cidade não encontrada " + res)
+				continue
+			}
 			err = u.CacheRepository.Save(ctx, location.String(), res)
 			if err != nil {
 				slog.Error(err.Error())
@@ -38,6 +43,9 @@ func (u *GetMsgsUseCase) Execute(ctx context.Context, locations []entity.Locatio
 			// se não tem, captura do message gateway e popula cache
 		}
 		result[location.String()] = res
+	}
+	if len(result) == 0 {
+		return result, errors.New("empty result")
 	}
 	return result, nil
 }

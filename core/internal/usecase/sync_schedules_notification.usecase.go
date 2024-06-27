@@ -94,7 +94,7 @@ func getUniquesLocation(sliceList []entity.User) []struct{ City, State string } 
 		if _, value := allKeys[item.Location.String()]; !value {
 			allKeys[item.Location.String()] = true
 			list = append(list,
-				struct{ City, State string }{City: item.Location.String(), State: item.Location.String()},
+				struct{ City, State string }{City: item.Location.City, State: item.Location.State},
 			)
 		}
 	}

@@ -75,7 +75,7 @@ func main() {
 	scheduleRepository := implements.PostgresScheduleRepository{
 		Db: db,
 	}
-	messageGateway := factories.NewCacheSyncMessageGateway(configs.CachePass, configs.CachePass)
+	messageGateway := factories.NewCacheSyncMessageGateway(configs.CacheUri, configs.CachePass)
 	webKafkaRepository := implements.NewWebKafkaRepository(kafkaNotificationQueueProduce, configs.KAFKATopic)
 	notificationQueueRepositories := []interfaces.NotificationQueueRepository{
 		webKafkaRepository,

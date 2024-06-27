@@ -1,7 +1,7 @@
 FROM  golang:1.22.4 as build
 
 USER root
-
+ENV TZ="America/Fortaleza"
 WORKDIR /app
 
 ADD cache_sync /cache_sync

@@ -92,10 +92,12 @@ type Previsao struct {
 func (c *CptecMessageGateway) MessageByLocation(ctx context.Context, city string, state string) (string, error) {
 	var result Previsao
 	cityId, err := GetCityID(city, state)
+	fmt.Println(city, state, cityId)
 	if err != nil {
 		return "", err
 	}
 	climate, err := GetCityClimate(cityId)
+	fmt.Println(city, state, cityId, climate.Previsao)
 	if err != nil {
 		return "", err
 	}
@@ -103,7 +105,11 @@ func (c *CptecMessageGateway) MessageByLocation(ctx context.Context, city string
 	if IsCoastalCities(city, state) {
 		waves, err := GetCityWaveForecast(cityId)
 		if err != nil {
-			return "", err
+			str, err := json.Marshal(result)
+			if err != nil {
+				return "", err
+			}
+			return string(str), err
 		}
 		result.Ondas = waves
 	}
@@ -111,6 +117,7 @@ func (c *CptecMessageGateway) MessageByLocation(ctx context.Context, city string
 	if err != nil {
 		return "", err
 	}
+	fmt.Println(string(str))
 	return string(str), err
 }
 

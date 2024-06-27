@@ -1,5 +1,5 @@
 FROM golang:1.22.4 as build
-
+ENV TZ="America/Fortaleza"
 WORKDIR /app
 
 COPY . .

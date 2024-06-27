@@ -5,78 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a70dfc59-e7df-4d5f-a569-2fd284a0f00e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.dockerignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/go.work" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/go.work.core" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Desafio Dev BackEnd - IT ARC.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Desafio Dev BackEnd - IT ARC.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cache_sync.Dockerfile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/cache_sync_service/factories/factories.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/cache_sync_service/main.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/core/main.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/web_client_test/main.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/web_worker/main.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/configs/config.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cache_sync/cache_sync.Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/cache_sync/cache_sync.Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cache_sync/internal/infra/implements/cptec_message_gateway.implements.go" beforeDir="false" afterPath="$PROJECT_DIR$/cache_sync/internal/infra/implements/cptec_message_gateway.implements.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cache_sync/internal/usecase/get_msgs.usecase.go" beforeDir="false" afterPath="$PROJECT_DIR$/cache_sync/internal/usecase/get_msgs.usecase.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core.Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/core.Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dev.env" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/core/swagger/docs.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/core/swagger/swagger.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/core/swagger/swagger.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/img.png" beforeDir="false" afterPath="$PROJECT_DIR$/docs/img.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/cache_sync_service/entity/location.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/cache_sync_service/infra/implements/coastal_cities.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/cache_sync_service/infra/implements/cptec_message_gateway.implements.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/cache_sync_service/infra/implements/postgres_location_repository.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/cache_sync_service/infra/implements/redis_cache_repository.implements.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/cache_sync_service/usecase/get_msgs.usecase.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/cache_sync_service/usecase/interfaces/cache_repository.interface.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/cache_sync_service/usecase/interfaces/location_repository.interface.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/cache_sync_service/usecase/interfaces/message_gateway.interface.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/cache_sync_service/usecase/sync.usecase.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/core/entity/notification.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/core/entity/schedule_notification.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/core/entity/schedule_notification_test.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/core/entity/user.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/core/entity/user_test.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/core/infra/database/migrations/001_init.down.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/core/infra/database/migrations/001_init.up.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/core/infra/database/migrations/002_init.down.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/core/infra/database/migrations/002_init.up.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/core/infra/database/migrations/Dockerfile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/core/infra/implements/cache_sync_service.implements.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/core/infra/implements/postgres_schedule_repository.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/core/infra/implements/postgres_user_repository.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/core/infra/implements/web_kafka_repository.implements.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/core/infra/web/scheduler.routes.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/core/infra/web/user.routes.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/core/infra/web/webserver.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/core/usecase/activate_user.usecase.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/core/usecase/create_schedule_notification.usecase.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/core/usecase/deactivate_user.usecase.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/core/usecase/delete_schedule_notification.usecase.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/core/usecase/insert_user.usecase.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/core/usecase/interfaces/message_gateway.interface.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/core/usecase/interfaces/notification_queue_repository.interface.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/core/usecase/interfaces/schedule_notification_repository.interface.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/core/usecase/interfaces/user_repository.interface.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/core/usecase/sync_schedules_notification.usecase.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/web_worker/entity/notification.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/web_worker/infra/implements/coastal_cities.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/web_worker/infra/implements/web_kafka_repository.implements.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/web_worker/infra/implements/web_rest_service.implements.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/web_worker/usecase/interfaces/notification_queue_repository.interface.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/web_worker/usecase/interfaces/web_service.interface.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/web_worker/usecase/sync_notifications.usecase.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/circuit_break.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/helper.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/thunder-collection_desafio-dev-back.json" beforeDir="false" afterPath="$PROJECT_DIR$/docs/thunder-collection_desafio-dev-back.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web_client_test.Dockerfile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web_worker.Dockerfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/cmd/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/core/cmd/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/internal/usecase/sync_schedules_notification.usecase.go" beforeDir="false" afterPath="$PROJECT_DIR$/core/internal/usecase/sync_schedules_notification.usecase.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web_client_test/web_client_test.Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/web_client_test/web_client_test.Dockerfile" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -149,7 +85,7 @@
       <recent name="$PROJECT_DIR$/docs" />
     </key>
   </component>
-  <component name="RunManager" selected="Docker.docker-compose.yaml.core: Compose Deployment">
+  <component name="RunManager" selected="Docker.docker-compose.yaml: Compose Deployment">
     <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
       <deployment type="docker-compose.yml">
         <settings />
@@ -167,6 +103,14 @@
         <settings>
           <option name="buildOnly" value="true" />
           <option name="sourceFilePath" value="core.Dockerfile" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration name="docker-compose.yaml: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="sourceFilePath" value="docker-compose.yaml" />
         </settings>
       </deployment>
       <method v="2" />
@@ -197,19 +141,6 @@
       </deployment>
       <method v="2" />
     </configuration>
-    <configuration name="docker-compose.yaml.web_client_test: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
-      <deployment type="docker-compose.yml">
-        <settings>
-          <option name="services">
-            <list>
-              <option value="web_client_test" />
-            </list>
-          </option>
-          <option name="sourceFilePath" value="docker-compose.yaml" />
-        </settings>
-      </deployment>
-      <method v="2" />
-    </configuration>
     <configuration name="docker-compose.yaml.web_worker: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
       <deployment type="docker-compose.yml">
         <settings>
@@ -225,11 +156,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Docker.docker-compose.yaml: Compose Deployment" />
         <item itemvalue="Docker.docker-compose.yaml.core: Compose Deployment" />
         <item itemvalue="Docker.core.Dockerfile: Compose Deployment" />
         <item itemvalue="Docker.docker-compose.yaml.web_worker: Compose Deployment" />
         <item itemvalue="Docker.docker-compose.yaml.cache_sync: Compose Deployment" />
-        <item itemvalue="Docker.docker-compose.yaml.web_client_test: Compose Deployment" />
       </list>
     </recent_temporary>
   </component>
