@@ -44,7 +44,7 @@ func main() {
 		}
 		fmt.Println("Inputs len: ", len(input))
 		for i, in := range input {
-			fmt.Println("Input:", i, in.Message)
+			fmt.Println("Input:", i, in)
 		}
 		w.WriteHeader(http.StatusOK)
 		//w.WriteHeader(http.StatusBadRequest) //test circuit break
