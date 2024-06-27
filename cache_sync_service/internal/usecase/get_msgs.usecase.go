@@ -3,23 +3,23 @@ package usecase
 import (
 	"context"
 	"github.com/beriloqueiroz/desafio-dev-back/cache_sync_service/internal/entity"
-	interfaces2 "github.com/beriloqueiroz/desafio-dev-back/cache_sync_service/internal/usecase/interfaces"
+	"github.com/beriloqueiroz/desafio-dev-back/cache_sync_service/internal/usecase/interfaces"
 	"log/slog"
 )
 
 type GetMsgsUseCase struct {
-	CacheRepository interfaces2.CacheRepository
-	MessageGateway  interfaces2.MessageGateway
+	CacheRepository interfaces.CacheRepository
+	MessageGateway  interfaces.MessageGateway
 }
 
-func NewGetMsgsUseCase(cacheRepository interfaces2.CacheRepository, messageGateway interfaces2.MessageGateway) *GetMsgsUseCase {
+func NewGetMsgsUseCase(cacheRepository interfaces.CacheRepository, messageGateway interfaces.MessageGateway) *GetMsgsUseCase {
 	return &GetMsgsUseCase{
 		CacheRepository: cacheRepository,
 		MessageGateway:  messageGateway,
 	}
 }
 
-func (u *GetMsgsUseCase) Execute(ctx context.Context, locations []entity.Location) (map[string]string, error) {
+func (u *GetMsgsUseCase) ListByLocations(ctx context.Context, locations []entity.Location) (map[string]string, error) {
 	// captura no cache e retorna
 	result := make(map[string]string)
 	for _, location := range locations {

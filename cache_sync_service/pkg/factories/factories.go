@@ -2,12 +2,12 @@ package factories
 
 import (
 	"github.com/beriloqueiroz/desafio-dev-back/cache_sync_service/configs"
-	implements2 "github.com/beriloqueiroz/desafio-dev-back/cache_sync_service/internal/infra/implements"
+	"github.com/beriloqueiroz/desafio-dev-back/cache_sync_service/internal/infra/implements"
 	"github.com/beriloqueiroz/desafio-dev-back/cache_sync_service/internal/usecase"
 	"github.com/redis/go-redis/v9"
 )
 
-func NewGetMessageUseCase() usecase.GetMsgsUseCase {
+func NewGetMessageUseCase() *usecase.GetMsgsUseCase {
 	configs, err := configs.LoadConfig([]string{"."})
 	if err != nil {
 		panic(err)
@@ -17,7 +17,7 @@ func NewGetMessageUseCase() usecase.GetMsgsUseCase {
 		Password: configs.CachePass,
 		DB:       0,
 	})
-	redisCacheRepository := implements2.NewRedisCacheRepository(clientRedis)
-	cptecMessageGateway := implements2.NewCptecMessageGateway()
-	return *usecase.NewGetMsgsUseCase(redisCacheRepository, cptecMessageGateway)
+	redisCacheRepository := implements.NewRedisCacheRepository(clientRedis)
+	cptecMessageGateway := implements.NewCptecMessageGateway()
+	return usecase.NewGetMsgsUseCase(redisCacheRepository, cptecMessageGateway)
 }

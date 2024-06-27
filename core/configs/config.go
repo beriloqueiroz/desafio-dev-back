@@ -7,6 +7,8 @@ type conf struct {
 	DBUri      string `mapstructure:"DB_URI"`
 	KAFKAUrl   string `mapstructure:"KAFKA_URL"`
 	KAFKATopic string `mapstructure:"KAFKA_TOPIC"`
+	CacheUri   string `mapstructure:"CACHE_URI"`
+	CachePass  string `mapstructure:"CACHE_PASS"`
 }
 
 func LoadConfig(paths []string) (*conf, error) {

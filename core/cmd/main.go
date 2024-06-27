@@ -3,7 +3,7 @@ package main
 import (
 	"context"
 	"database/sql"
-	"github.com/beriloqueiroz/desafio-dev-back/cache_sync_service/cmd/factories"
+	"github.com/beriloqueiroz/desafio-dev-back/cache_sync_service/pkg/factories"
 	"github.com/beriloqueiroz/desafio-dev-back/core/configs"
 	"github.com/beriloqueiroz/desafio-dev-back/core/internal/infra/implements"
 	"github.com/beriloqueiroz/desafio-dev-back/core/internal/infra/web"
@@ -74,7 +74,8 @@ func main() {
 	scheduleRepository := implements.PostgresScheduleRepository{
 		Db: db,
 	}
-	messageGateway := implements.NewCacheSyncService(factories.NewGetMessageUseCase())
+
+	messageGateway := factories.NewGetMessageUseCase()
 	webKafkaRepository := implements.NewWebKafkaRepository(kafkaNotificationQueueProduce, configs.KAFKATopic)
 	notificationQueueRepositories := []interfaces.NotificationQueueRepository{
 		webKafkaRepository,

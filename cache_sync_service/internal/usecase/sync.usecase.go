@@ -2,20 +2,20 @@ package usecase
 
 import (
 	"context"
-	interfaces2 "github.com/beriloqueiroz/desafio-dev-back/cache_sync_service/internal/usecase/interfaces"
+	interfaces "github.com/beriloqueiroz/desafio-dev-back/cache_sync_service/internal/usecase/interfaces"
 	"log/slog"
 )
 
 type SyncUseCase struct {
-	LocationRepository interfaces2.LocationRepository
-	CacheRepository    interfaces2.CacheRepository
-	MessageGateway     interfaces2.MessageGateway
+	LocationRepository interfaces.LocationRepository
+	CacheRepository    interfaces.CacheRepository
+	MessageGateway     interfaces.MessageGateway
 }
 
 func NewSyncUseCase(
-	locationRepository interfaces2.LocationRepository,
-	cacheRepository interfaces2.CacheRepository,
-	messageGateway interfaces2.MessageGateway) *SyncUseCase {
+	locationRepository interfaces.LocationRepository,
+	cacheRepository interfaces.CacheRepository,
+	messageGateway interfaces.MessageGateway) *SyncUseCase {
 	return &SyncUseCase{
 		LocationRepository: locationRepository,
 		CacheRepository:    cacheRepository,
