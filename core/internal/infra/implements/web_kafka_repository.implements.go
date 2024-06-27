@@ -4,7 +4,7 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	"github.com/beriloqueiroz/desafio-dev-back/internal/core/entity"
+	"github.com/beriloqueiroz/desafio-dev-back/core/internal/entity"
 	"github.com/confluentinc/confluent-kafka-go/kafka"
 	"log/slog"
 )

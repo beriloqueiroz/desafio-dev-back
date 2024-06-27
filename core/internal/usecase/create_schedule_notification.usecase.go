@@ -3,8 +3,8 @@ package usecase
 import (
 	"context"
 	"errors"
-	"github.com/beriloqueiroz/desafio-dev-back/internal/core/entity"
-	"github.com/beriloqueiroz/desafio-dev-back/internal/core/usecase/interfaces"
+	"github.com/beriloqueiroz/desafio-dev-back/core/internal/entity"
+	"github.com/beriloqueiroz/desafio-dev-back/core/internal/usecase/interfaces"
 	"github.com/google/uuid"
 	"time"
 )

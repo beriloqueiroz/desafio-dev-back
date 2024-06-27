@@ -4,7 +4,7 @@ import (
 	"context"
 	"database/sql"
 	"errors"
-	"github.com/beriloqueiroz/desafio-dev-back/internal/core/entity"
+	"github.com/beriloqueiroz/desafio-dev-back/core/internal/entity"
 	"time"
 )
 

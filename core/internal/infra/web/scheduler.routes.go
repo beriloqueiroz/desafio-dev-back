@@ -2,7 +2,7 @@ package web
 
 import (
 	"encoding/json"
-	"github.com/beriloqueiroz/desafio-dev-back/internal/core/usecase"
+	"github.com/beriloqueiroz/desafio-dev-back/core/internal/usecase"
 	"log/slog"
 	"net/http"
 	"time"

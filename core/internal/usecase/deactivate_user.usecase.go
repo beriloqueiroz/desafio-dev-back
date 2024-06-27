@@ -2,7 +2,7 @@ package usecase
 
 import (
 	"context"
-	"github.com/beriloqueiroz/desafio-dev-back/internal/core/usecase/interfaces"
+	"github.com/beriloqueiroz/desafio-dev-back/core/internal/usecase/interfaces"
 )
 
 type DeactivateUserUseCase struct {
