@@ -7,7 +7,7 @@ import (
 	"github.com/redis/go-redis/v9"
 )
 
-func NewGetMessageUseCase() *usecase.GetMsgsUseCase {
+func NewGetMessageUseCase() usecase.GetMsgsUseCase {
 	configs, err := configs.LoadConfig([]string{"."})
 	if err != nil {
 		panic(err)
@@ -19,5 +19,5 @@ func NewGetMessageUseCase() *usecase.GetMsgsUseCase {
 	})
 	redisCacheRepository := implements2.NewRedisCacheRepository(clientRedis)
 	cptecMessageGateway := implements2.NewCptecMessageGateway()
-	return usecase.NewGetMsgsUseCase(redisCacheRepository, cptecMessageGateway)
+	return *usecase.NewGetMsgsUseCase(redisCacheRepository, cptecMessageGateway)
 }
