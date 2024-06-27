@@ -5,7 +5,6 @@
 ![img.png](img.png)
 
 ## todo
-- swagger nas apis
 - fazer retry no send queue
 - fazer next app
 
@@ -149,6 +148,10 @@ O conteúdo da pasta implements são as implementações das interfaces em /usec
 - rodando
 ```bash
 docker compose up -d
+```
+em caso de problemas de permissão ao criar o volumes usar:
+```bash
+sudo chmod -R g+rwX ./.docker/kafka
 ```
 - gestão de usuário e agendamento
 

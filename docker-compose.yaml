@@ -2,7 +2,7 @@
 version: '3.9'
 services:
   core:
-    build: 
+    build:
       context: .
       dockerfile: "core.Dockerfile"
     ports:
@@ -43,7 +43,7 @@ services:
     container_name: migrate
     volumes:
       - ./internal/core/infra/database/migrations:/migrations
-    entrypoint: dockerize -wait tcp://mgmt_db:5432 -timeout 20s migrate
+    entrypoint: dockerize -wait tcp://mgmt_db:5432 -timeout 600s migrate
     command: [ "-path", "/migrations", "-database",  "postgres://postgres:postgres@mgmt_db:5432/mgmt?sslmode=disable", "-verbose","up" ]
     depends_on:
       - mgmt_db
@@ -81,7 +81,7 @@ services:
   kafka:
     restart: always
     container_name: kafka-like
-    image: docker.io/bitnami/kafka:3.3
+    image: bitnami/kafka:latest
     ports:
       - "9093:9093"
     volumes:
