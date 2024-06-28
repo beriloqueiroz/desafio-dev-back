@@ -2,7 +2,7 @@
 
 ## Desenho da solução
 
-![img.png](docs/img.png)
+![img.png](docs/img_arch.png)
 
 ## todo
 - subir imagens no dockerhub
@@ -95,21 +95,9 @@ Os módulos estão contidos na raiz, cache_sync, web_worker e core
 │   │       └── interfaces
 │   └── pkg
 ├── docs
-├── web_client_test
-│   └── cmd
-└── web_worker
-    ├── cmd
-    ├── configs
-    ├── internal
-    │   ├── entity
-    │   ├── infra
-    │   │   └── implements
-    │   └── usecase
-    │       └── interfaces
-    └── pkg
 
 ```
-
+- há também não listado entre os diretórios o projeto web_app que será mencionado ao final.
 ### exemplo de módulo
 ```tree
 ├── cmd
@@ -177,8 +165,17 @@ Pode importar o arquivo: thunder-collection_desafio-dev-back.json
 
 - Swagger
   - http://localhost:8080/swagger/
-
 - sugestão do cenário feliz de teste
   1. cadastra 5 usuários
   2. cadastra 1 schedule para daqui a 2 minutos
-  3. quando o tempo de 2 minutos passar as mensagens das respectivas cidades/usuários devem aparecer no log do container web_client_test
+  3. quando o tempo de 2 minutos passar as mensagens das respectivas cidades/usuários devem aparecer no front de teste.
+
+## Front de test (web_app)
+- uma pequena página desenvolvida usando nextjs onde pode-se visualizar as mensagens:
+  - basicamente o nextjs possui um endpoint no "back do front" que recepcionará as notificações vindas do web_worker a tela verifica se tem que mostrar a mensagem e a mostra. Uma vez fechando o modal, essa mensagem não deverá mais aparecer para o usuário a não ser que ele clique no botão atualizar.
+  - para acessar:
+    ```http request
+      http://localhost:9000
+    ```
+  
+![img.png](docs/img.png)

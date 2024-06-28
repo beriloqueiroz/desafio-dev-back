@@ -5,8 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a70dfc59-e7df-4d5f-a569-2fd284a0f00e" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/docs/img_arch.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web_app" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web_client_test/cmd/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/web_client_test/cmd/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/img.png" beforeDir="false" afterPath="$PROJECT_DIR$/docs/img.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.work" beforeDir="false" afterPath="$PROJECT_DIR$/go.work" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web_app/app/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/web_app/app/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web_client_test/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web_client_test/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web_client_test/.idea/web_client_test.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web_client_test/cmd/main.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web_client_test/go.mod" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web_client_test/web_client_test.Dockerfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web_worker/.env" beforeDir="false" afterPath="$PROJECT_DIR$/web_worker/.env" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,40 +46,42 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;Docker.cache_sync.Dockerfile.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.core/core.Dockerfile.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.docker-compose.yaml.adminer: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.docker-compose.yaml.cache_sync: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.docker-compose.yaml.core: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.docker-compose.yaml.kafka: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.docker-compose.yaml.mgmt_db: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.docker-compose.yaml.migrate: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.docker-compose.yaml.web_client_test: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.docker-compose.yaml.web_worker: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.docker-compose.yaml: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.web_worker.Dockerfile.executor&quot;: &quot;Run&quot;,
-    &quot;Go Build.go build github.com/beriloqueiroz/desafio-dev-back/cmd/web_client_test.executor&quot;: &quot;Run&quot;,
-    &quot;Go Build.go build github.com/beriloqueiroz/desafio-dev-back/cmd/web_worker.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.formatter.settings.were.checked&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.migrated.go.modules.settings&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.modules.automatic.dependencies.download&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.modules.go.list.on.any.changes.was.set&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;go.import.settings.migrated&quot;: &quot;true&quot;,
-    &quot;go.sdk.automatically.set&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/berilo/dev/desafio-dev-back/core&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.standard&quot;: &quot;&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;Errors&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Docker.cache_sync.Dockerfile.executor": "Run",
+    "Docker.core/core.Dockerfile.executor": "Run",
+    "Docker.docker-compose.yaml.adminer: Compose Deployment.executor": "Run",
+    "Docker.docker-compose.yaml.cache_sync: Compose Deployment.executor": "Run",
+    "Docker.docker-compose.yaml.core: Compose Deployment.executor": "Run",
+    "Docker.docker-compose.yaml.kafka: Compose Deployment.executor": "Run",
+    "Docker.docker-compose.yaml.mgmt_db: Compose Deployment.executor": "Run",
+    "Docker.docker-compose.yaml.migrate: Compose Deployment.executor": "Run",
+    "Docker.docker-compose.yaml.web-app: Compose Deployment.executor": "Run",
+    "Docker.docker-compose.yaml.web_client_test: Compose Deployment.executor": "Run",
+    "Docker.docker-compose.yaml.web_worker: Compose Deployment.executor": "Run",
+    "Docker.docker-compose.yaml: Compose Deployment.executor": "Run",
+    "Docker.web_app/Dockerfile.executor": "Run",
+    "Docker.web_worker.Dockerfile.executor": "Run",
+    "Go Build.go build github.com/beriloqueiroz/desafio-dev-back/cmd/web_client_test.executor": "Run",
+    "Go Build.go build github.com/beriloqueiroz/desafio-dev-back/cmd/web_worker.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.go.formatter.settings.were.checked": "true",
+    "RunOnceActivity.go.migrated.go.modules.settings": "true",
+    "RunOnceActivity.go.modules.automatic.dependencies.download": "true",
+    "RunOnceActivity.go.modules.go.list.on.any.changes.was.set": "true",
+    "git-widget-placeholder": "main",
+    "go.import.settings.migrated": "true",
+    "go.sdk.automatically.set": "true",
+    "last_opened_file_path": "/home/berilo/dev/desafio-dev-back/core",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.standard": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.standard": "",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "Errors"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/core" />
@@ -75,11 +91,11 @@
       <recent name="$PROJECT_DIR$/cmd/web_worker" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/docs" />
+      <recent name="$PROJECT_DIR$" />
     </key>
   </component>
-  <component name="RunManager" selected="Docker.docker-compose.yaml.web_client_test: Compose Deployment">
+  <component name="RunManager" selected="Docker.docker-compose.yaml.web-app: Compose Deployment">
     <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
       <deployment type="docker-compose.yml">
         <settings />
@@ -92,15 +108,6 @@
       </deployment>
       <method v="2" />
     </configuration>
-    <configuration name="core.Dockerfile: Compose Deployment" type="docker-deploy" factoryName="dockerfile" temporary="true" server-name="Docker">
-      <deployment type="dockerfile">
-        <settings>
-          <option name="buildOnly" value="true" />
-          <option name="sourceFilePath" value="core.Dockerfile" />
-        </settings>
-      </deployment>
-      <method v="2" />
-    </configuration>
     <configuration name="docker-compose.yaml: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
       <deployment type="docker-compose.yml">
         <settings>
@@ -109,12 +116,12 @@
       </deployment>
       <method v="2" />
     </configuration>
-    <configuration name="docker-compose.yaml.core: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+    <configuration name="docker-compose.yaml.mgmt_db: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
       <deployment type="docker-compose.yml">
         <settings>
           <option name="services">
             <list>
-              <option value="core" />
+              <option value="mgmt_db" />
             </list>
           </option>
           <option name="sourceFilePath" value="docker-compose.yaml" />
@@ -122,12 +129,12 @@
       </deployment>
       <method v="2" />
     </configuration>
-    <configuration name="docker-compose.yaml.web_client_test: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+    <configuration name="docker-compose.yaml.web-app: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
       <deployment type="docker-compose.yml">
         <settings>
           <option name="services">
             <list>
-              <option value="web_client_test" />
+              <option value="web-app" />
             </list>
           </option>
           <option name="sourceFilePath" value="docker-compose.yaml" />
@@ -148,13 +155,21 @@
       </deployment>
       <method v="2" />
     </configuration>
+    <configuration name="web_app/Dockerfile" type="docker-deploy" factoryName="dockerfile" temporary="true" server-name="Docker">
+      <deployment type="dockerfile">
+        <settings>
+          <option name="sourceFilePath" value="web_app/Dockerfile" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Docker.docker-compose.yaml.web_client_test: Compose Deployment" />
+        <item itemvalue="Docker.docker-compose.yaml.web-app: Compose Deployment" />
         <item itemvalue="Docker.docker-compose.yaml: Compose Deployment" />
-        <item itemvalue="Docker.docker-compose.yaml.core: Compose Deployment" />
-        <item itemvalue="Docker.core.Dockerfile: Compose Deployment" />
         <item itemvalue="Docker.docker-compose.yaml.web_worker: Compose Deployment" />
+        <item itemvalue="Docker.web_app/Dockerfile" />
+        <item itemvalue="Docker.docker-compose.yaml.mgmt_db: Compose Deployment" />
       </list>
     </recent_temporary>
   </component>

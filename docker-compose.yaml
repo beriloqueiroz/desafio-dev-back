@@ -1,13 +1,6 @@
 
 version: '3.9'
 services:
-  web_client_test:
-    build:
-      context: ./web_client_test
-      dockerfile: "web_client_test.Dockerfile"
-    ports:
-      - "9000:9000"
-
   core:
     build:
       context: .
@@ -117,3 +110,11 @@ services:
       - KAFKA_CLUSTERS_0_NAME=notification
       - KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS=kafka:9092
       - KAFKA_CLUSTERS_0_ZOOKEEPER=zookeeper:2181
+
+  web-app:
+    container_name: web_app
+    build:
+      context: ./web_app
+      dockerfile: Dockerfile
+    ports:
+      - 9000:3000
