@@ -4,17 +4,12 @@
 
 ![img.png](docs/img_arch.png)
 
-## todo
-- subir imagens no dockerhub
-- fazer retry no send queue
-- fazer nextjs app para ilustras mensagem e substituir web_client_test
-
 ## Introdução
 A solução tem como objetivo enviar mensagens com informações de previsão do tempo 
-para uma aplicação web sendo possível o agendamento desse envio, e o conteúdo da mensagem depende 
+para uma aplicação web. Sendo possível fazer o agendamento desse envio. O conteúdo da mensagem depende 
 da localização do usuário. O usuário poderá também ser cadastrado, ativado e desativado.
 
-A autenticação e autorização não está contemplada no projeto. Considerou-se que é feita por outro serviço, utilizando talvez a camada de infra e etc.  
+A autenticação e autorização não está contemplada no projeto. Considerou-se que é feita por outro serviço, utilizando talvez a camada de infra e talvez um provider como keyloak e etc.  
 
 ## app_containers
 É o conjunto de aplicativos internos da solução. Os blocos contidos são containers. Esses blocos chamaremos neste documento de módulos
@@ -131,8 +126,7 @@ O conteúdo da pasta implements são as implementações das interfaces em decla
 - CircuitBreak
   - Implementados na neste projeto nas implementações nos módulos na pasta infra/implements nos casos que há request para serviço de terceiros.
 - Containers
-  - Containerização que pode ser escalada com replicaset e deployments usando kubernetes
-
+  - Containerização que pode ser escalada com replicaset e deployments usando kubernetes. A decisão da forma como foi separa as responsabilidades dos módulo e o desacoplamento é com objetivo de que se possa escalar partes separadas do projeto. Em resumo a separação dos módulos dáse de acordo com a responsabilidade de ação e escala, se escala por motivos diferentes tende a ser um serviço diferente.
 
 ## Tecnologias e serviço de terceiros
 
@@ -141,11 +135,8 @@ O conteúdo da pasta implements são as implementações das interfaces em decla
 - web_queue: Kafka
 - mgmt: postgres
 - notification_web_worker: API REST [WEBSERVER - POST]
-- web: web app test 
-  - para ver as mensagens chegando em uma "aplicação web" ver-se no log do container web_client_test
-  ```bash
-    docker logs -f desafio-dev-back-web_client_test-1
-  ```
+- web: nextjs
+ 
 ## Testando
 
 - rodando
@@ -171,11 +162,12 @@ Pode importar o arquivo: thunder-collection_desafio-dev-back.json
   3. quando o tempo de 2 minutos passar as mensagens das respectivas cidades/usuários devem aparecer no front de teste.
 
 ## Front de test (web_app)
+- para ver as mensagens chegando em uma "aplicação web" ver-se pelo web_app.
+  ```http request
+    http://localhost:9000
+  ```
 - uma pequena página desenvolvida usando nextjs onde pode-se visualizar as mensagens:
   - basicamente o nextjs possui um endpoint no "back do front" que recepcionará as notificações vindas do web_worker a tela verifica se tem que mostrar a mensagem e a mostra. Uma vez fechando o modal, essa mensagem não deverá mais aparecer para o usuário a não ser que ele clique no botão atualizar.
-  - para acessar:
-    ```http request
-      http://localhost:9000
-    ```
   
-![img.png](docs/img.png)
+
+  ![img.png](docs/img.png)

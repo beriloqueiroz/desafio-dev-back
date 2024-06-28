@@ -1,0 +1,4 @@
+# todo list
+
+- subir imagens no dockerhub
+- fazer retry no send queue
