@@ -1,0 +1,482 @@
+[
+    {
+        "ScheduleNotification": {
+            "ID": "5bfff905-97d6-48b1-a6d6-b0798122cf02"
+        },
+        "ID": "5ae704e6-3f5f-4f5a-a392-67af645892e8",
+        "Message": {
+            "Clima": {
+                "Text": "",
+                "Nome": "São Paulo",
+                "Uf": "SP",
+                "Atualizacao": "2024-06-27",
+                "Previsao": [
+                    {
+                        "Text": "",
+                        "Dia": "2024-06-28",
+                        "Tempo": "pn",
+                        "Maxima": "27",
+                        "Minima": "14",
+                        "Iuv": "5.0"
+                    },
+                    {
+                        "Text": "",
+                        "Dia": "2024-06-29",
+                        "Tempo": "pn",
+                        "Maxima": "26",
+                        "Minima": "17",
+                        "Iuv": "5.0"
+                    },
+                    {
+                        "Text": "",
+                        "Dia": "2024-06-30",
+                        "Tempo": "c",
+                        "Maxima": "16",
+                        "Minima": "12",
+                        "Iuv": "5.0"
+                    },
+                    {
+                        "Text": "",
+                        "Dia": "2024-07-01",
+                        "Tempo": "pn",
+                        "Maxima": "16",
+                        "Minima": "8",
+                        "Iuv": "5.0"
+                    }
+                ]
+            },
+            "Ondas": {
+                "XMLName": {
+                    "Space": "",
+                    "Local": ""
+                },
+                "Text": "",
+                "Nome": "",
+                "Uf": "",
+                "Atualizacao": "",
+                "Manha": {
+                    "Text": "",
+                    "Dia": "",
+                    "Agitacao": "",
+                    "Altura": "",
+                    "Direcao": "",
+                    "Vento": "",
+                    "VentoDir": ""
+                },
+                "Tarde": {
+                    "Text": "",
+                    "Dia": "",
+                    "Agitacao": "",
+                    "Altura": "",
+                    "Direcao": "",
+                    "Vento": "",
+                    "VentoDir": ""
+                },
+                "Noite": {
+                    "Text": "",
+                    "Dia": "",
+                    "Agitacao": "",
+                    "Altura": "",
+                    "Direcao": "",
+                    "Vento": "",
+                    "VentoDir": ""
+                }
+            }
+        },
+        "User": {
+            "ID": "35da06fe-67eb-4b14-8da7-7f2f8a097183",
+            "Active": true,
+            "Email": "beril1o11@gmail.com",
+            "Phone": "12365417281",
+            "Location": {
+                "City": "São Paulo",
+                "State": "SP"
+            },
+            "CreateTime": "2024-06-28T00:33:29.322668127-03:00"
+        }
+    },
+    {
+        "ScheduleNotification": {
+            "ID": "5bfff905-97d6-48b1-a6d6-b0798122cf02"
+        },
+        "ID": "b66cffd3-7baf-473f-81fe-8478fad8a099",
+        "Message": {
+            "Clima": {
+                "Text": "",
+                "Nome": "Quixadá",
+                "Uf": "CE",
+                "Atualizacao": "2024-06-27",
+                "Previsao": [
+                    {
+                        "Text": "",
+                        "Dia": "2024-06-28",
+                        "Tempo": "pn",
+                        "Maxima": "32",
+                        "Minima": "22",
+                        "Iuv": "9.0"
+                    },
+                    {
+                        "Text": "",
+                        "Dia": "2024-06-29",
+                        "Tempo": "pn",
+                        "Maxima": "32",
+                        "Minima": "24",
+                        "Iuv": "9.0"
+                    },
+                    {
+                        "Text": "",
+                        "Dia": "2024-06-30",
+                        "Tempo": "pn",
+                        "Maxima": "32",
+                        "Minima": "22",
+                        "Iuv": "9.0"
+                    },
+                    {
+                        "Text": "",
+                        "Dia": "2024-07-01",
+                        "Tempo": "pn",
+                        "Maxima": "32",
+                        "Minima": "24",
+                        "Iuv": "9.0"
+                    }
+                ]
+            },
+            "Ondas": {
+                "XMLName": {
+                    "Space": "",
+                    "Local": ""
+                },
+                "Text": "",
+                "Nome": "",
+                "Uf": "",
+                "Atualizacao": "",
+                "Manha": {
+                    "Text": "",
+                    "Dia": "",
+                    "Agitacao": "",
+                    "Altura": "",
+                    "Direcao": "",
+                    "Vento": "",
+                    "VentoDir": ""
+                },
+                "Tarde": {
+                    "Text": "",
+                    "Dia": "",
+                    "Agitacao": "",
+                    "Altura": "",
+                    "Direcao": "",
+                    "Vento": "",
+                    "VentoDir": ""
+                },
+                "Noite": {
+                    "Text": "",
+                    "Dia": "",
+                    "Agitacao": "",
+                    "Altura": "",
+                    "Direcao": "",
+                    "Vento": "",
+                    "VentoDir": ""
+                }
+            }
+        },
+        "User": {
+            "ID": "39f9f256-be2c-4a14-b429-c961a9229f04",
+            "Active": true,
+            "Email": "berilo11@gmail.com",
+            "Phone": "1236547281",
+            "Location": {
+                "City": "Quixadá",
+                "State": "CE"
+            },
+            "CreateTime": "2024-06-28T00:33:29.322677164-03:00"
+        }
+    },
+    {
+        "ScheduleNotification": {
+            "ID": "5bfff905-97d6-48b1-a6d6-b0798122cf02"
+        },
+        "ID": "d53b2665-502f-4dda-8c73-d6f10c879d67",
+        "Message": {
+            "Clima": {
+                "Text": "",
+                "Nome": "Belo Horizonte",
+                "Uf": "MG",
+                "Atualizacao": "2024-06-27",
+                "Previsao": [
+                    {
+                        "Text": "",
+                        "Dia": "2024-06-28",
+                        "Tempo": "pn",
+                        "Maxima": "29",
+                        "Minima": "16",
+                        "Iuv": "5.0"
+                    },
+                    {
+                        "Text": "",
+                        "Dia": "2024-06-29",
+                        "Tempo": "pn",
+                        "Maxima": "29",
+                        "Minima": "16",
+                        "Iuv": "6.0"
+                    },
+                    {
+                        "Text": "",
+                        "Dia": "2024-06-30",
+                        "Tempo": "pn",
+                        "Maxima": "29",
+                        "Minima": "16",
+                        "Iuv": "6.0"
+                    },
+                    {
+                        "Text": "",
+                        "Dia": "2024-07-01",
+                        "Tempo": "pn",
+                        "Maxima": "28",
+                        "Minima": "16",
+                        "Iuv": "6.0"
+                    }
+                ]
+            },
+            "Ondas": {
+                "XMLName": {
+                    "Space": "",
+                    "Local": ""
+                },
+                "Text": "",
+                "Nome": "",
+                "Uf": "",
+                "Atualizacao": "",
+                "Manha": {
+                    "Text": "",
+                    "Dia": "",
+                    "Agitacao": "",
+                    "Altura": "",
+                    "Direcao": "",
+                    "Vento": "",
+                    "VentoDir": ""
+                },
+                "Tarde": {
+                    "Text": "",
+                    "Dia": "",
+                    "Agitacao": "",
+                    "Altura": "",
+                    "Direcao": "",
+                    "Vento": "",
+                    "VentoDir": ""
+                },
+                "Noite": {
+                    "Text": "",
+                    "Dia": "",
+                    "Agitacao": "",
+                    "Altura": "",
+                    "Direcao": "",
+                    "Vento": "",
+                    "VentoDir": ""
+                }
+            }
+        },
+        "User": {
+            "ID": "51399e03-0a93-4c4a-a6d1-91ef5afe4326",
+            "Active": true,
+            "Email": "beril1o111@gmail.com",
+            "Phone": "123654117281",
+            "Location": {
+                "City": "Belo Horizonte",
+                "State": "MG"
+            },
+            "CreateTime": "2024-06-28T00:33:29.322684123-03:00"
+        }
+    },
+    {
+        "ScheduleNotification": {
+            "ID": "5bfff905-97d6-48b1-a6d6-b0798122cf02"
+        },
+        "ID": "5e12eb05-6ace-42b0-b6d0-c0c8b4c37093",
+        "Message": {
+            "Clima": {
+                "Text": "",
+                "Nome": "Baturité",
+                "Uf": "CE",
+                "Atualizacao": "2024-06-27",
+                "Previsao": [
+                    {
+                        "Text": "",
+                        "Dia": "2024-06-28",
+                        "Tempo": "pn",
+                        "Maxima": "31",
+                        "Minima": "22",
+                        "Iuv": "9.0"
+                    },
+                    {
+                        "Text": "",
+                        "Dia": "2024-06-29",
+                        "Tempo": "pn",
+                        "Maxima": "32",
+                        "Minima": "24",
+                        "Iuv": "9.0"
+                    },
+                    {
+                        "Text": "",
+                        "Dia": "2024-06-30",
+                        "Tempo": "pn",
+                        "Maxima": "32",
+                        "Minima": "22",
+                        "Iuv": "9.0"
+                    },
+                    {
+                        "Text": "",
+                        "Dia": "2024-07-01",
+                        "Tempo": "pn",
+                        "Maxima": "31",
+                        "Minima": "23",
+                        "Iuv": "9.0"
+                    }
+                ]
+            },
+            "Ondas": {
+                "XMLName": {
+                    "Space": "",
+                    "Local": ""
+                },
+                "Text": "",
+                "Nome": "",
+                "Uf": "",
+                "Atualizacao": "",
+                "Manha": {
+                    "Text": "",
+                    "Dia": "",
+                    "Agitacao": "",
+                    "Altura": "",
+                    "Direcao": "",
+                    "Vento": "",
+                    "VentoDir": ""
+                },
+                "Tarde": {
+                    "Text": "",
+                    "Dia": "",
+                    "Agitacao": "",
+                    "Altura": "",
+                    "Direcao": "",
+                    "Vento": "",
+                    "VentoDir": ""
+                },
+                "Noite": {
+                    "Text": "",
+                    "Dia": "",
+                    "Agitacao": "",
+                    "Altura": "",
+                    "Direcao": "",
+                    "Vento": "",
+                    "VentoDir": ""
+                }
+            }
+        },
+        "User": {
+            "ID": "6383c882-1c6a-458c-a38f-f409a0f2cb0d",
+            "Active": true,
+            "Email": "berilo1@gmail.com",
+            "Phone": "123654781",
+            "Location": {
+                "City": "Baturité",
+                "State": "CE"
+            },
+            "CreateTime": "2024-06-28T00:33:29.32269126-03:00"
+        }
+    },
+    {
+        "ScheduleNotification": {
+            "ID": "5bfff905-97d6-48b1-a6d6-b0798122cf02"
+        },
+        "ID": "5104de85-5d7b-4626-98af-43287d62ce70",
+        "Message": {
+            "Clima": {
+                "Text": "",
+                "Nome": "Fortaleza",
+                "Uf": "CE",
+                "Atualizacao": "2024-06-27",
+                "Previsao": [
+                    {
+                        "Text": "",
+                        "Dia": "2024-06-28",
+                        "Tempo": "pn",
+                        "Maxima": "31",
+                        "Minima": "24",
+                        "Iuv": "9.0"
+                    },
+                    {
+                        "Text": "",
+                        "Dia": "2024-06-29",
+                        "Tempo": "pn",
+                        "Maxima": "30",
+                        "Minima": "24",
+                        "Iuv": "9.0"
+                    },
+                    {
+                        "Text": "",
+                        "Dia": "2024-06-30",
+                        "Tempo": "pn",
+                        "Maxima": "30",
+                        "Minima": "24",
+                        "Iuv": "9.0"
+                    },
+                    {
+                        "Text": "",
+                        "Dia": "2024-07-01",
+                        "Tempo": "ci",
+                        "Maxima": "31",
+                        "Minima": "24",
+                        "Iuv": "9.0"
+                    }
+                ]
+            },
+            "Ondas": {
+                "XMLName": {
+                    "Space": "",
+                    "Local": "cidade"
+                },
+                "Text": "",
+                "Nome": "Fortaleza",
+                "Uf": "CE",
+                "Atualizacao": "27-06-2024",
+                "Manha": {
+                    "Text": "",
+                    "Dia": "27-06-2024 12h Z",
+                    "Agitacao": "Fraco",
+                    "Altura": "1.8",
+                    "Direcao": "SSE",
+                    "Vento": "8.3",
+                    "VentoDir": "SE"
+                },
+                "Tarde": {
+                    "Text": "",
+                    "Dia": "27-06-2024 18h Z",
+                    "Agitacao": "Fraco",
+                    "Altura": "1.7",
+                    "Direcao": "SSE",
+                    "Vento": "8.2",
+                    "VentoDir": "SE"
+                },
+                "Noite": {
+                    "Text": "",
+                    "Dia": "27-06-2024 21h Z",
+                    "Agitacao": "Fraco",
+                    "Altura": "1.6",
+                    "Direcao": "SSE",
+                    "Vento": "8.5",
+                    "VentoDir": "SE"
+                }
+            }
+        },
+        "User": {
+            "ID": "a4c2e7ea-7e65-4857-8fb3-27aaab52d600",
+            "Active": true,
+            "Email": "berilo@gmail.com",
+            "Phone": "12365478",
+            "Location": {
+                "City": "Fortaleza",
+                "State": "CE"
+            },
+            "CreateTime": "2024-06-28T00:33:29.322695803-03:00"
+        }
+    }
+]

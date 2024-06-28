@@ -5,10 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a70dfc59-e7df-4d5f-a569-2fd284a0f00e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.docker/web_app/data/notifications.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web_app/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web_app/app/api/route.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web_app/data/notifications.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web_app/helpers/notification-repo.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web_app/helpers/types.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web_app/helpers/util.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/.env" beforeDir="false" afterPath="$PROJECT_DIR$/core/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/internal/usecase/create_schedule_notification.usecase.go" beforeDir="false" afterPath="$PROJECT_DIR$/core/internal/usecase/create_schedule_notification.usecase.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docker-compose.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web_app" beforeDir="false" afterPath="$PROJECT_DIR$/web_app" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web_app/app/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/web_app/app/page.tsx" afterDir="false" />
@@ -50,6 +56,7 @@
     "Docker.docker-compose.yaml.mgmt_db: Compose Deployment.executor": "Run",
     "Docker.docker-compose.yaml.migrate: Compose Deployment.executor": "Run",
     "Docker.docker-compose.yaml.web-app: Compose Deployment.executor": "Run",
+    "Docker.docker-compose.yaml.web_app: Compose Deployment.executor": "Run",
     "Docker.docker-compose.yaml.web_client_test: Compose Deployment.executor": "Run",
     "Docker.docker-compose.yaml.web_worker: Compose Deployment.executor": "Run",
     "Docker.docker-compose.yaml: Compose Deployment.executor": "Run",
@@ -65,29 +72,30 @@
     "git-widget-placeholder": "main",
     "go.import.settings.migrated": "true",
     "go.sdk.automatically.set": "true",
-    "last_opened_file_path": "/home/berilo/dev/desafio-dev-back",
+    "last_opened_file_path": "/home/berilo/dev/desafio-dev-back/.docker/web_app/data",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.standard": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.standard": "",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "Errors"
+    "settings.editor.selected.configurable": "Errors",
+    "ts.external.directory.path": "/home/berilo/dev/desafio-dev-back/web_app/node_modules/typescript/lib"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/.docker/web_app/data" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/core" />
       <recent name="$PROJECT_DIR$/cache_sync/pkg/entity" />
       <recent name="$PROJECT_DIR$/internal/cache_sync_service/infra/implements" />
-      <recent name="$PROJECT_DIR$/cmd/web_worker" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/docs" />
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
-  <component name="RunManager" selected="Docker.docker-compose.yaml.web-app: Compose Deployment">
+  <component name="RunManager" selected="Docker.docker-compose.yaml.web_app: Compose Deployment">
     <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
       <deployment type="docker-compose.yml">
         <settings />
@@ -108,12 +116,12 @@
       </deployment>
       <method v="2" />
     </configuration>
-    <configuration name="docker-compose.yaml.mgmt_db: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+    <configuration name="docker-compose.yaml.web-app: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
       <deployment type="docker-compose.yml">
         <settings>
           <option name="services">
             <list>
-              <option value="mgmt_db" />
+              <option value="web-app" />
             </list>
           </option>
           <option name="sourceFilePath" value="docker-compose.yaml" />
@@ -121,12 +129,12 @@
       </deployment>
       <method v="2" />
     </configuration>
-    <configuration name="docker-compose.yaml.web-app: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+    <configuration name="docker-compose.yaml.web_app: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
       <deployment type="docker-compose.yml">
         <settings>
           <option name="services">
             <list>
-              <option value="web-app" />
+              <option value="web_app" />
             </list>
           </option>
           <option name="sourceFilePath" value="docker-compose.yaml" />
@@ -157,11 +165,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Docker.docker-compose.yaml.web_app: Compose Deployment" />
+        <item itemvalue="Docker.docker-compose.yaml.web_worker: Compose Deployment" />
         <item itemvalue="Docker.docker-compose.yaml.web-app: Compose Deployment" />
         <item itemvalue="Docker.docker-compose.yaml: Compose Deployment" />
-        <item itemvalue="Docker.docker-compose.yaml.web_worker: Compose Deployment" />
         <item itemvalue="Docker.web_app/Dockerfile" />
-        <item itemvalue="Docker.docker-compose.yaml.mgmt_db: Compose Deployment" />
       </list>
     </recent_temporary>
   </component>

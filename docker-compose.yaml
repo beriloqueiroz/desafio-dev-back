@@ -116,5 +116,7 @@ services:
     build:
       context: ./web_app
       dockerfile: Dockerfile
+    volumes:
+      - ./.docker/web_app/data:/usr/src/app/data
     ports:
       - 9000:3000
