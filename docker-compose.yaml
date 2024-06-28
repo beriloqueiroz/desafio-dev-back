@@ -111,7 +111,7 @@ services:
       - KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS=kafka:9092
       - KAFKA_CLUSTERS_0_ZOOKEEPER=zookeeper:2181
 
-  web-app:
+  web_app:
     container_name: web_app
     build:
       context: ./web_app

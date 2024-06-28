@@ -22,7 +22,7 @@ func (u *CreateScheduleNotificationUseCase) Execute(ctx context.Context, startTi
 	if err != nil {
 		return err
 	}
-	if !hasAnyScheduleWithSameStartTime {
+	if hasAnyScheduleWithSameStartTime {
 		return errors.New("schedule with same start time already exists")
 	}
 	scheduleNotification, err := entity.NewScheduleNotification(uuid.NewString(), startTime, entity.Pending)
