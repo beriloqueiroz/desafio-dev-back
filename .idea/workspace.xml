@@ -5,22 +5,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a70dfc59-e7df-4d5f-a569-2fd284a0f00e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/todo" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web_app/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web_app/app/api/route.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web_app/data/notifications.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web_app/helpers/notification-repo.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web_app/helpers/types.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web_app/helpers/util.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.docker/web_app/data/notifications.json" beforeDir="false" afterPath="$PROJECT_DIR$/.docker/web_app/data/notifications.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/cmd/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/core/cmd/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/thunder-collection_desafio-dev-back.json" beforeDir="false" afterPath="$PROJECT_DIR$/docs/thunder-collection_desafio-dev-back.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web_app" beforeDir="false" afterPath="$PROJECT_DIR$/web_app" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web_app/app/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/web_app/app/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web_app/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/web_app/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web_app/data/notifications.json" beforeDir="false" afterPath="$PROJECT_DIR$/web_app/data/notifications.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Go File" />
+      </list>
+    </option>
   </component>
   <component name="GOROOT" url="file:///usr/local/go" />
   <component name="Git.Settings">
@@ -41,44 +44,45 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;Docker.cache_sync.Dockerfile.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.core/core.Dockerfile.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.docker-compose.yaml.adminer: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.docker-compose.yaml.cache_sync: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.docker-compose.yaml.core: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.docker-compose.yaml.kafka: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.docker-compose.yaml.mgmt_db: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.docker-compose.yaml.migrate: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.docker-compose.yaml.web-app: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.docker-compose.yaml.web_app: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.docker-compose.yaml.web_client_test: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.docker-compose.yaml.web_worker: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.docker-compose.yaml: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.web_app/Dockerfile.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.web_worker.Dockerfile.executor&quot;: &quot;Run&quot;,
-    &quot;Go Build.go build github.com/beriloqueiroz/desafio-dev-back/cmd/web_client_test.executor&quot;: &quot;Run&quot;,
-    &quot;Go Build.go build github.com/beriloqueiroz/desafio-dev-back/cmd/web_worker.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.formatter.settings.were.checked&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.migrated.go.modules.settings&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.modules.automatic.dependencies.download&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.modules.go.list.on.any.changes.was.set&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;go.import.settings.migrated&quot;: &quot;true&quot;,
-    &quot;go.sdk.automatically.set&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/berilo/dev/desafio-dev-back/.docker/web_app/data&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.standard&quot;: &quot;&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;Errors&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/home/berilo/dev/desafio-dev-back/web_app/node_modules/typescript/lib&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "DefaultGoTemplateProperty": "Go File",
+    "Docker.cache_sync.Dockerfile.executor": "Run",
+    "Docker.core/core.Dockerfile.executor": "Run",
+    "Docker.docker-compose.yaml.adminer: Compose Deployment.executor": "Run",
+    "Docker.docker-compose.yaml.cache_sync: Compose Deployment.executor": "Run",
+    "Docker.docker-compose.yaml.core: Compose Deployment.executor": "Run",
+    "Docker.docker-compose.yaml.kafka: Compose Deployment.executor": "Run",
+    "Docker.docker-compose.yaml.mgmt_db: Compose Deployment.executor": "Run",
+    "Docker.docker-compose.yaml.migrate: Compose Deployment.executor": "Run",
+    "Docker.docker-compose.yaml.web-app: Compose Deployment.executor": "Run",
+    "Docker.docker-compose.yaml.web_app: Compose Deployment.executor": "Run",
+    "Docker.docker-compose.yaml.web_client_test: Compose Deployment.executor": "Run",
+    "Docker.docker-compose.yaml.web_worker: Compose Deployment.executor": "Run",
+    "Docker.docker-compose.yaml: Compose Deployment.executor": "Run",
+    "Docker.web_app/Dockerfile.executor": "Run",
+    "Docker.web_worker.Dockerfile.executor": "Run",
+    "Go Build.go build github.com/beriloqueiroz/desafio-dev-back/cmd/web_client_test.executor": "Run",
+    "Go Build.go build github.com/beriloqueiroz/desafio-dev-back/cmd/web_worker.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.go.formatter.settings.were.checked": "true",
+    "RunOnceActivity.go.migrated.go.modules.settings": "true",
+    "RunOnceActivity.go.modules.automatic.dependencies.download": "true",
+    "RunOnceActivity.go.modules.go.list.on.any.changes.was.set": "true",
+    "git-widget-placeholder": "main",
+    "go.import.settings.migrated": "true",
+    "go.sdk.automatically.set": "true",
+    "last_opened_file_path": "/home/berilo/dev/cbk-reports",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.standard": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.standard": "",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "Errors",
+    "ts.external.directory.path": "/home/berilo/dev/desafio-dev-back/web_app/node_modules/typescript/lib"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/.docker/web_app/data" />
@@ -181,6 +185,13 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="dependencySupport" implementationName="javascript:npm:react" />
+    <option featureType="dependencySupport" implementationName="executable:docker" />
+    <option featureType="dependencySupport" implementationName="javascript:npm:tailwindcss" />
+    <option featureType="dependencySupport" implementationName="javascript:npm:next" />
+    <option featureType="dependencySupport" implementationName="javascript:npm:postcss" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />

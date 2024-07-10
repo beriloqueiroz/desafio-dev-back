@@ -24,7 +24,7 @@
             ],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"email\":\"bot8@gmail.com\",\n  \"city\":\"Morro Branco\",\n  \"state\":\"CE\",\n  \"phone\":\"8841181811448\"\n}",
+                "raw": "{  "email":"bot8@gmail.com",  "city":"Morro Branco",  "state":"CE",  "phone":"8841181811448"}",
                 "form": []
             }
         },
@@ -58,7 +58,7 @@
             ],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"start_time\":\"2024-06-24T23:58:50-03:00\"\n}",
+                "raw": "{  "start_time":"2024-06-24T23: 58: 50-03: 00"}",
                 "form": []
             }
         },
@@ -92,7 +92,7 @@
             ],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"start_time\":\"2024-06-24T23:58:50-03:00\"\n}",
+                "raw": "{  "start_time":"2024-06-24T23: 58: 50-03: 00"}",
                 "form": []
             }
         }

@@ -1,4 +1,7 @@
 # todo list
 
 - subir imagens no dockerhub
+- usar multistage docker
+- inserir lock tables nos repositórios para multi containers
+- inserir lógica no core para expirar scheduler quando "muito antigo"
 - fazer retry no send queue

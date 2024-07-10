@@ -77,8 +77,10 @@ func main() {
 	}
 	messageGateway := factories.NewCacheSyncMessageGateway(configs.CacheUri, configs.CachePass)
 	webKafkaRepository := implements.NewWebKafkaRepository(kafkaNotificationQueueProduce, configs.KAFKATopic)
+	appIosRabbitMqRepository := implements.NewWebKafkaRepository(kafkaNotificationQueueProduce, configs.KAFKATopic)
 	notificationQueueRepositories := []interfaces.NotificationQueueRepository{
 		webKafkaRepository,
+		appIosRabbitMqRepository
 	}
 
 	// useCases
