@@ -1,5 +1,6 @@
 # todo list
 
+- guardar cidades litoraneas em um bacno
 - subir imagens no dockerhub
 - usar multistage docker
 - inserir lock tables nos repositórios para multi containers

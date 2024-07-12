@@ -7,7 +7,7 @@
 ## Introdução
 A solução tem como objetivo enviar mensagens com informações de previsão do tempo 
 para uma aplicação web. Sendo possível fazer o agendamento desse envio. O conteúdo da mensagem depende 
-da localização do usuário. O usuário poderá também ser cadastrado, ativado e desativado.
+da localização do usuário. O usuário poderá também ser cadastrado, ativado e desativado. (ler arquivo Desafio.md na pasta docs)
 
 A autenticação e autorização não está contemplada no projeto. Considerou-se que é feita por outro serviço, utilizando talvez a camada de infra e talvez um provider como keyloak e etc.  
 
